@@ -1,14 +1,15 @@
 import Level1 from "./public/assets/scenes/Level1.js";
+import Preload from "./public/assets/scenes/Preload.js";
 
 const config = {
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
+  width: 1900,
+  height: 1080,
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
     min: {
-      width: 1920,
+      width: 1900,
       height: 1080,
     },
     max: {
@@ -26,7 +27,7 @@ const config = {
   // List of scenes to load
   // Only the first scene will be shown
   // Remember to import the scene before adding it to the list
-  scene: [Level1]
+  scene: [Preload, Level1]
 };
 
 // Create a new Phaser game instance
