@@ -1,0 +1,72 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "level1.json",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "Todos los archivos (*)",
+    "fileStates": {
+        "#ground": {
+            "scaleInDock": 0.75
+        },
+        "#street": {
+            "scaleInDock": 0.33
+        },
+        "level1.json": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 0.125,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 2096,
+                "y": 2968
+            }
+        },
+        "level1.json#ground": {
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        },
+        "level1.json#line": {
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        },
+        "level1.json#sidewalk": {
+            "scaleInDock": 0.5
+        },
+        "level1.json#street": {
+            "scaleInDock": 0.25,
+            "scaleInEditor": 1
+        },
+        "level1.tmx": {
+            "scale": 0.23725,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1818.7565858798735,
+                "y": 2061.1169652265544
+            }
+        },
+        "level1.tmx#ground": {
+            "scaleInDock": 1
+        },
+        "level1.tmx#street": {
+            "scaleInDock": 1
+        }
+    },
+    "last.imagePath": "D:/Info anterior/CarpetaProtegida/Lucas/unraf/2do/1er cuatrimestre/programacion/TpFinal/public/assets/images",
+    "openFiles": [
+        "level1.json"
+    ],
+    "project": "",
+    "property.type": "bool",
+    "recentFiles": [
+        "level1.json"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 50,
+        "width": 50
+    }
+}

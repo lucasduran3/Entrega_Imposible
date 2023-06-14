@@ -13,7 +13,7 @@ export default class Level1 extends Phaser.Scene{
     count;
     timedEvent;
     init(){
-        this.count = 260;
+        this.count = 500;
         this.timerAceleration = 5;
     }
 
@@ -23,9 +23,14 @@ export default class Level1 extends Phaser.Scene{
 
         const streetL = this.map.addTilesetImage("street", "street");
         const groundL = this.map.addTilesetImage("ground", "ground");
+        const sideL = this.map.addTilesetImage("sidewalk", "sidewalk");
+        const lineL = this.map.addTilesetImage("line", "line");
 
         const streetLayer = this.map.createLayer("street", streetL,0,0);
         const groundLayer = this.map.createLayer("ground", groundL,0,0);
+        const sideWalkLayer = this.map.createLayer("sidewalk", sideL,0,0);
+        const lineLayer = this.map.createLayer("line", lineL,0,0);
+        lineLayer.setCollisionByProperty({colision: true});
 
         const objectsLayer = this.map.getObjectLayer("objects");
 
@@ -50,7 +55,7 @@ export default class Level1 extends Phaser.Scene{
         this.person.setCollideWorldBounds(true);
         this.tweens.add({
             targets: this.person,
-            x: 300,
+            x: 1999,
             flipX: true,
             yoyo: true,
             duration: 8000,
@@ -64,13 +69,13 @@ export default class Level1 extends Phaser.Scene{
         this.person2.setCollideWorldBounds(true);
         this.tweens.add({
             targets: this.person2,
-            x: 2300,
+            x: 1800,
             flipX: true,
             yoyo: true,
             duration: 8000,
             repeat: -1
         });
-        spawnPoint = this.map.findObject(
+        /*spawnPoint = this.map.findObject(
             "objects",
             (obj) => obj.name === "person3"
         );
@@ -83,7 +88,7 @@ export default class Level1 extends Phaser.Scene{
             yoyo: true,
             duration: 8000,
             repeat: -1
-        });
+        });*/
 
         spawnPoint = this.map.findObject(
             "objects",
@@ -115,46 +120,6 @@ export default class Level1 extends Phaser.Scene{
             loop: -1,
             ease: 'back.inout'
         });
-
-       /* this.tweens.chain({
-            tweens: [
-                {
-                    targets: this.car,
-                    x: 0,
-                    y: 200,
-                    angle: 40,
-                    duration: 1000,
-                    ease: 'sine.out'
-                },
-                {
-                    targets: this.car,
-                    x: 0,
-                    y: 700,
-                    angle: 80,
-                    duration: 1000,
-                    ease: 'sine.in'
-                },
-                {
-                    targets: this.car2,
-                    x: 0,
-                    y: 200,
-                    angle: -30,
-                    duration: 1000,
-                    ease: 'sine.out'
-                },
-                {
-                    targets: this.car2,
-                    x: 0,
-                    y: 700,
-                    angle: -60,
-                    duration: 1000,
-                    ease: 'sine.in'
-                },
-            ],
-            loop: -1
-        });*/
-
-        //Crear una variable como contador q dependiendo del valor cambie el sprite
 
         this.coins = this.physics.add.group();
         objectsLayer.objects.forEach((objData) => {
@@ -253,6 +218,8 @@ export default class Level1 extends Phaser.Scene{
         );
         
         groundLayer.setCollisionByProperty({ colision: true });
+
+        this.physics.add.collider(lineLayer, this.player);
         this.physics.add.collider(groundLayer, this.player);    
         
         this.nCoins = 0;
@@ -352,12 +319,12 @@ export default class Level1 extends Phaser.Scene{
     }
 
     resetVelocity(){
-        this.count=260;
+        this.count=500;
     }
 
     playerAceleration(player,drink){
     drink.disableBody(true,true);
-     this.count=800;
+     this.count=1200;
      this.timedEvent = this.time.addEvent({
         delay:3000,
         callback: this.resetVelocity,
