@@ -8,15 +8,16 @@ import LevelWin from "./public/assets/scenes/LevelWin.js";
 
 const config = {
   type: Phaser.AUTO,
-  width: 1900,
-  height: 1080,
+  
+  width: window.innerWidth,
+  height: window.innerHeight,
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
-    min: {
+    /*min: {
       width: 1900,
       height: 1080,
-    },
+    },*/
     max: {
       width: 1600,
       height: 1200,

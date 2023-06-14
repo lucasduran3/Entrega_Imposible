@@ -10,8 +10,11 @@ export default class Level1 extends Phaser.Scene{
     attempts;
     spawnPointPlayer;
     spawnPointCar;
+    count;
+    timedEvent;
     init(){
-        
+        this.count = 260;
+        this.timerAceleration = 5;
     }
 
     create(){
@@ -91,23 +94,67 @@ export default class Level1 extends Phaser.Scene{
         this.tweens.add({
             targets: this.car,
             x: 0,
-            duration: 9000,
-            loop: -1
+            hold: 500,
+            duration: 12000,
+            loop: -1,
+            ease: 'back.in'
         });
 
-        /*spawnPoint = this.map.findObject(
+        spawnPoint = this.map.findObject(
             "objects",
             (obj) => obj.name === "car2"
         );
-        this.car2 = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, "car");
-        this.car2.setFlipX(90);
+        this.car2 = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, "car2");
+        this.car2.setScale(0.2);
 
         this.tweens.add({
             targets: this.car2,
-            x: 9000,
-            duration: 10000,
-            loop: 5
+            x: 0,
+            hold: 500,
+            duration: 9000,
+            loop: -1,
+            ease: 'back.inout'
+        });
+
+       /* this.tweens.chain({
+            tweens: [
+                {
+                    targets: this.car,
+                    x: 0,
+                    y: 200,
+                    angle: 40,
+                    duration: 1000,
+                    ease: 'sine.out'
+                },
+                {
+                    targets: this.car,
+                    x: 0,
+                    y: 700,
+                    angle: 80,
+                    duration: 1000,
+                    ease: 'sine.in'
+                },
+                {
+                    targets: this.car2,
+                    x: 0,
+                    y: 200,
+                    angle: -30,
+                    duration: 1000,
+                    ease: 'sine.out'
+                },
+                {
+                    targets: this.car2,
+                    x: 0,
+                    y: 700,
+                    angle: -60,
+                    duration: 1000,
+                    ease: 'sine.in'
+                },
+            ],
+            loop: -1
         });*/
+
+        //Crear una variable como contador q dependiendo del valor cambie el sprite
 
         this.coins = this.physics.add.group();
         objectsLayer.objects.forEach((objData) => {
@@ -120,6 +167,29 @@ export default class Level1 extends Phaser.Scene{
         }
       }
     });
+
+        this.drinks = this.physics.add.group();
+        objectsLayer.objects.forEach((objData)=>{
+           const {x = 0, y = 0, name} = objData;
+           switch(name){
+            case "drink" : {
+                const drink = this.drinks.create(x,y,"drink").setScale(0.08);
+                break;
+            }
+           }
+        });
+
+        this.clocks = this.physics.add.group();
+        objectsLayer.objects.forEach((objData)=>{
+           const {x = 0, y = 0, name} = objData;
+           switch(name){
+            case "clock" : {
+                const clock = this.clocks.create(x,y,"clock").setScale(0.02);
+                break;
+            }
+           }
+        });
+
           this.cursors = this.input.keyboard.createCursorKeys();  
           this.keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 
@@ -158,6 +228,22 @@ export default class Level1 extends Phaser.Scene{
             this
         );
 
+        this.physics.add.collider(
+            this.player,
+            this.drinks,
+            this.playerAceleration,
+            null,
+            this
+        );
+
+        this.physics.add.collider(
+            this.player,
+            this.clocks,
+            this.timeIncrement,
+            null,
+            this
+        );
+
         this.physics.add.overlap(
             this.player,
             this.check,
@@ -170,7 +256,7 @@ export default class Level1 extends Phaser.Scene{
         this.physics.add.collider(groundLayer, this.player);    
         
         this.nCoins = 0;
-        this.scoreText = this.add.text(20, 60, "Score:" + this.nCoins, {
+        this.scoreText = this.add.text(20, 20, "Score:" + this.nCoins, {
         fontSize: "32px",
         fontStyle: "bold",
         fill: "#FFF"
@@ -178,7 +264,7 @@ export default class Level1 extends Phaser.Scene{
         this.scoreText.setScrollFactor(0);
 
         this.timer = 60;
-        this.timerText = this.add.text(950,60, this.timer,{
+        this.timerText = this.add.text(950,20, this.timer,{
             fontSize:"32px",
             fontStyle: "bold",
             fill: "#FFF"
@@ -193,7 +279,6 @@ export default class Level1 extends Phaser.Scene{
         });
 
         this.attempts = 3;
-
 
 
     }
@@ -211,20 +296,20 @@ export default class Level1 extends Phaser.Scene{
         }
 
         if(this.cursors.up.isDown){
-            this.player.setVelocityY(-260);
+            this.player.setVelocityY(-this.count);
             this.player.setAngle(0);
         }
         else if(this.cursors.down.isDown){
-            this.player.setVelocityY(260);
+            this.player.setVelocityY(this.count);
             this.player.setAngle(180);
         }
         else if(this.cursors.right.isDown){
             this.player.setAngle(90);
-            this.player.setVelocityX(260);      
+            this.player.setVelocityX(this.count);      
         }
         else if(this.cursors.left.isDown){
             this.player.setAngle(-90);
-            this.player.setVelocityX(-260);
+            this.player.setVelocityX(-this.count);
         }else{
             this.player.setVelocity(0);
         } 
@@ -254,6 +339,7 @@ export default class Level1 extends Phaser.Scene{
     loseAttemp(){
             this.attempts--;
             this.player.setPosition(this.spawnPointPlayer.x, this.spawnPointPlayer.y);
+            this.player.setAngle(0);
             this.timer = 60;
     }
 
@@ -263,5 +349,25 @@ export default class Level1 extends Phaser.Scene{
             timer : this.timer,
             attempts : this.attempts
         });
+    }
+
+    resetVelocity(){
+        this.count=260;
+    }
+
+    playerAceleration(player,drink){
+    drink.disableBody(true,true);
+     this.count=800;
+     this.timedEvent = this.time.addEvent({
+        delay:3000,
+        callback: this.resetVelocity,
+        callbackScope: this,
+        repeat: 1,
+     });
+    }
+
+    timeIncrement(player, clock){
+        this.timer+=5;
+        clock.disableBody(true,true);
     }
 }
