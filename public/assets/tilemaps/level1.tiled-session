@@ -8,37 +8,85 @@
     ],
     "file.lastUsedOpenFilter": "Todos los archivos (*)",
     "fileStates": {
+        "": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
+        },
         "#ground": {
             "scaleInDock": 0.75
+        },
+        "#sidewalk": {
+            "scaleInDock": 1.5
         },
         "#street": {
             "scaleInDock": 0.33
         },
         "level1.json": {
             "expandedObjectLayers": [
-                3
+                5
             ],
-            "scale": 0.125,
-            "selectedLayer": 1,
+            "scale": 0.25,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 2096,
-                "y": 2968
+                "x": 714,
+                "y": 1724
             }
         },
+        "level1.json#bush": {
+            "scaleInDock": 1
+        },
+        "level1.json#corner": {
+            "scaleInDock": 0.125
+        },
+        "level1.json#crosswalk": {
+            "scaleInDock": 1
+        },
+        "level1.json#dirt": {
+            "scaleInDock": 1
+        },
+        "level1.json#flower": {
+            "scaleInDock": 1
+        },
+        "level1.json#flower2": {
+            "scaleInDock": 1
+        },
         "level1.json#ground": {
-            "scaleInDock": 0.75,
+            "scaleInDock": 0.33,
             "scaleInEditor": 1
+        },
+        "level1.json#ground2": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "level1.json#house": {
+            "scaleInDock": 0.125
+        },
+        "level1.json#house1": {
+            "dynamicWrapping": false,
+            "scaleInDock": 0.125,
+            "scaleInEditor": 0.5
+        },
+        "level1.json#house2": {
+            "dynamicWrapping": true
         },
         "level1.json#line": {
             "scaleInDock": 0.75,
             "scaleInEditor": 1
         },
         "level1.json#sidewalk": {
-            "scaleInDock": 0.5
+            "dynamicWrapping": false,
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
         },
         "level1.json#street": {
             "scaleInDock": 0.25,
             "scaleInEditor": 1
+        },
+        "level1.json#tree": {
+            "scaleInDock": 0.5
+        },
+        "level1.json#tree2": {
+            "scaleInDock": 0.5
         },
         "level1.tmx": {
             "scale": 0.23725,
@@ -56,6 +104,9 @@
         }
     },
     "last.imagePath": "D:/Info anterior/CarpetaProtegida/Lucas/unraf/2do/1er cuatrimestre/programacion/TpFinal/public/assets/images",
+    "map.height": 110,
+    "map.lastUsedFormat": "json",
+    "map.width": 70,
     "openFiles": [
         "level1.json"
     ],
@@ -64,9 +115,11 @@
     "recentFiles": [
         "level1.json"
     ],
+    "resizeMap.removeObjects": true,
     "tileset.embedInMap": true,
     "tileset.tileSize": {
-        "height": 50,
-        "width": 50
-    }
+        "height": 32,
+        "width": 32
+    },
+    "tileset.type": 0
 }

@@ -14,10 +14,10 @@ const config = {
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
-    /*min: {
+    min: {
       width: 1900,
-      height: 1080,
-    },*/
+      height: window.innerHeight,
+    },
     max: {
       width: 1600,
       height: 1200,
