@@ -4,7 +4,9 @@ export default class Preload extends Phaser.Scene{
     }
     preload(){
         this.load.tilemapTiledJSON("map", "./public/assets/tilemaps/level1.json");
+        this.load.tilemapTiledJSON("map2", "./public/assets/tilemaps/level2.json");
         this.load.image("ground", "./public/assets/images/ground.png");
+        this.load.image("ground2", "./public/assets/images/ground2.png");
         this.load.image("street", "./public/assets/images/street.png");
 
         this.load.spritesheet("player", "./public/assets/images/player.png", {frameWidth: 192, frameHeight: 240});
@@ -39,9 +41,13 @@ export default class Preload extends Phaser.Scene{
         this.load.image("flower", "./public/assets/images/flower.png");
         this.load.image("flower2", "./public/assets/images/flower2.png");
         this.load.image("dirt", "./public/assets/images/dirt.png");
+        this.load.image("house", "./public/assets/images/house1.png");
+        this.load.image("house2", "./public/assets/images/house2.png");
+        this.load.image("house3", "./public/assets/images/house3.png");
+        this.load.image("house4", "./public/assets/images/house4.png");
         
     }
     create(){
-        this.scene.start("Menu");
+        this.scene.start("Level2");
     }
 }

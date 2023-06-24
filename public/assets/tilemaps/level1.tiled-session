@@ -3,14 +3,17 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level1.json",
+    "activeFile": "level2.json",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "Todos los archivos (*)",
     "fileStates": {
         "": {
-            "scaleInDock": 0.5,
+            "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "#corner": {
+            "scaleInDock": 1
         },
         "#ground": {
             "scaleInDock": 0.75
@@ -25,15 +28,17 @@
             "expandedObjectLayers": [
                 5
             ],
-            "scale": 0.25,
-            "selectedLayer": 3,
+            "scale": 0.125,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 714,
-                "y": 1724
+                "x": 1596,
+                "y": 2396
             }
         },
         "level1.json#bush": {
-            "scaleInDock": 1
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "level1.json#corner": {
             "scaleInDock": 0.125
@@ -51,7 +56,7 @@
             "scaleInDock": 1
         },
         "level1.json#ground": {
-            "scaleInDock": 0.33,
+            "scaleInDock": 0.25,
             "scaleInEditor": 1
         },
         "level1.json#ground2": {
@@ -101,19 +106,56 @@
         },
         "level1.tmx#street": {
             "scaleInDock": 1
+        },
+        "level2.json": {
+            "expandedObjectLayers": [
+                10
+            ],
+            "scale": 0.33,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 1139.3939393939395,
+                "y": 4330.30303030303
+            }
+        },
+        "level2.json#bush": {
+            "scaleInDock": 2
+        },
+        "level2.json#corner": {
+            "scaleInDock": 1
+        },
+        "level2.json#crosswalk": {
+            "scaleInDock": 1
+        },
+        "level2.json#ground": {
+            "scaleInDock": 1
+        },
+        "level2.json#sidewalk": {
+            "scaleInDock": 1
+        },
+        "level2.json#street": {
+            "scaleInDock": 0.25
+        },
+        "level2.json#tree": {
+            "scaleInDock": 1
+        },
+        "level2.json#tree2": {
+            "scaleInDock": 1
         }
     },
     "last.imagePath": "D:/Info anterior/CarpetaProtegida/Lucas/unraf/2do/1er cuatrimestre/programacion/TpFinal/public/assets/images",
-    "map.height": 110,
+    "map.height": 150,
     "map.lastUsedFormat": "json",
-    "map.width": 70,
+    "map.width": 100,
     "openFiles": [
-        "level1.json"
+        "level1.json",
+        "level2.json"
     ],
     "project": "",
     "property.type": "bool",
     "recentFiles": [
-        "level1.json"
+        "level1.json",
+        "level2.json"
     ],
     "resizeMap.removeObjects": true,
     "tileset.embedInMap": true,

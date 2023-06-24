@@ -1,6 +1,6 @@
-export default class Level1 extends Phaser.Scene{
+export default class Level2 extends Phaser.Scene{
     constructor(){
-        super("Level1");
+        super("Level2");
     }
     map;
     keyA;
@@ -76,7 +76,7 @@ export default class Level1 extends Phaser.Scene{
 
         
 
-        this.map = this.make.tilemap({key : "map"});
+        this.map = this.make.tilemap({key : "map2"});
 
         //LOAD AND CREATE LAYER
         const streetL = this.map.addTilesetImage("street", "street");
@@ -97,13 +97,6 @@ export default class Level1 extends Phaser.Scene{
         const sideWalkLayer = this.map.createLayer("sidewalk", sideL,0,0);
         const cornerLayer = this.map.createLayer("corner", cornerL,0,0);   
         const bushLayer = this.map.createLayer("bush", bushL,0,0);
-        
-
-        this.house = this.physics.add.sprite(550,4300,"house");
-        this.house2 = this.physics.add.sprite(2500,4150, "house2");
-        this.house3 = this.physics.add.sprite(600,2300,"house3");
-        this.house = this.physics.add.sprite(2600,2200,"house");
-        this.house4 = this.physics.add.sprite(700,250, "house4");
 
         const treeLayer = this.map.createLayer("tree", treeL,0,0);
         const tree2Layer = this.map.createLayer("tree2", tree2L,0,0);
