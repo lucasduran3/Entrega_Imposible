@@ -24,6 +24,12 @@ const config = {
       height: 1200,
     },
   },
+  fx: {
+    glow: {
+        distance: 32,
+        quality: 0.1
+    }
+},
   physics: {
     default: "arcade",
     arcade:{

@@ -5,6 +5,8 @@ export default class Preload extends Phaser.Scene{
     preload(){
         this.load.tilemapTiledJSON("map", "./public/assets/tilemaps/level1.json");
         this.load.tilemapTiledJSON("map2", "./public/assets/tilemaps/level2.json");
+        this.load.tilemapTiledJSON("mapMenu", "./public/assets/tilemaps/menu.json");
+
         this.load.image("ground", "./public/assets/images/ground.png");
         this.load.image("ground2", "./public/assets/images/ground2.png");
         this.load.image("street", "./public/assets/images/street.png");
@@ -19,6 +21,9 @@ export default class Preload extends Phaser.Scene{
         this.load.spritesheet("person", "./public/assets/images/person.png", {frameWidth:128, frameHeight:128});
         this.load.spritesheet("person2", "./public/assets/images/person2.png", {frameWidth:128, frameHeight:128});
         this.load.spritesheet("person3", "./public/assets/images/person3.png",{frameWidth:96, frameHeight:96});
+        this.load.spritesheet("person4", "./public/assets/images/person5.png",{frameWidth:128, frameHeight:128});
+        this.load.spritesheet("dog", "./public/assets/images/dog.png",{frameWidth:96, frameHeight:96});
+        
 
         this.load.spritesheet("coin", "./public/assets/images/coin.png",{frameWidth:160, frameHeight:160});
 
@@ -35,6 +40,7 @@ export default class Preload extends Phaser.Scene{
         //this.load.image("car2", "./public/assets/images/car2.png");
         this.load.image("sidewalk", "./public/assets/images/sidewalk.png");
         this.load.image("corner", "./public/assets/images/corner.png");
+        this.load.image("crosswalk", "./public/assets/images/crosswalk.png");
         this.load.image("bush", "./public/assets/images/bush.png");
         this.load.image("tree", "./public/assets/images/tree.png");
         this.load.image("tree2", "./public/assets/images/tree2.png");
@@ -45,9 +51,19 @@ export default class Preload extends Phaser.Scene{
         this.load.image("house2", "./public/assets/images/house2.png");
         this.load.image("house3", "./public/assets/images/house3.png");
         this.load.image("house4", "./public/assets/images/house4.png");
+
+        //ASSETS MENU
+        this.load.image("play", "./public/assets/images/button.png");
+        this.load.image("help", "./public/assets/images/helpButton.png");
+        this.load.image("back", "./public/assets/images/backMenu.png");
+        this.load.image("char", "./public/assets/images/charMenu.png");
+        this.load.image("carMenu", "./public/assets/images/carMenu.png");
+        this.load.image("sky", "./public/assets/images/sky.png");
+        this.load.image("bar", "./public/assets/images/bar.png");
+        this.load.image("title", "./public/assets/images/title.png");
         
     }
     create(){
-        this.scene.start("Level2");
+        this.scene.start("Menu");
     }
 }

@@ -3,13 +3,13 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level2.json",
+    "activeFile": "menu.json",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "Todos los archivos (*)",
     "fileStates": {
         "": {
-            "scaleInDock": 1,
+            "scaleInDock": 0.125,
             "scaleInEditor": 1
         },
         "#corner": {
@@ -111,11 +111,11 @@
             "expandedObjectLayers": [
                 10
             ],
-            "scale": 0.33,
-            "selectedLayer": 5,
+            "scale": 0.25,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 1139.3939393939395,
-                "y": 4330.30303030303
+                "x": 1736,
+                "y": 2398
             }
         },
         "level2.json#bush": {
@@ -141,21 +141,55 @@
         },
         "level2.json#tree2": {
             "scaleInDock": 1
+        },
+        "menu.json": {
+            "scale": 0.25,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 592,
+                "y": -504
+            }
+        },
+        "menu.json#backMenu": {
+            "scaleInDock": 0.25
+        },
+        "menu.json#bar": {
+            "scaleInDock": 0.33
+        },
+        "menu.json#button": {
+            "scaleInDock": 0.5
+        },
+        "menu.json#carMenu": {
+            "scaleInDock": 0.125
+        },
+        "menu.json#charMenu": {
+            "scaleInDock": 0.25
+        },
+        "menu.json#helpButton": {
+            "scaleInDock": 0.75
+        },
+        "menu.json#menuChar": {
+            "scaleInDock": 0.5
+        },
+        "menu.json#sky": {
+            "scaleInDock": 1
         }
     },
     "last.imagePath": "D:/Info anterior/CarpetaProtegida/Lucas/unraf/2do/1er cuatrimestre/programacion/TpFinal/public/assets/images",
-    "map.height": 150,
+    "map.height": 34,
     "map.lastUsedFormat": "json",
-    "map.width": 100,
+    "map.width": 60,
     "openFiles": [
         "level1.json",
-        "level2.json"
+        "level2.json",
+        "menu.json"
     ],
     "project": "",
     "property.type": "bool",
     "recentFiles": [
         "level1.json",
-        "level2.json"
+        "level2.json",
+        "menu.json"
     ],
     "resizeMap.removeObjects": true,
     "tileset.embedInMap": true,
