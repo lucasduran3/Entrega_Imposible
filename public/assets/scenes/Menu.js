@@ -13,8 +13,6 @@ export default class Menu extends Phaser.Scene{
         this.bar = this.physics.add.sprite(1800,475,"bar");
         //this.help = this.physics.add.sprite(1800,875,"help");
 
-        this.title = this.physics.add.sprite(1095,150,"title").setScale(1.5);
-
         const playButton = this.add.image(1800,575, "play").setInteractive();
         playButton.on("pointerover", ()=>{
             this.game.canvas.style.cursor = "pointer"

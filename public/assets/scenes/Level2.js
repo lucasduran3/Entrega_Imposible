@@ -12,9 +12,10 @@ export default class Level2 extends Phaser.Scene{
     spawnPointCar;
     count;
     timedEvent;
-    init(){
+    init(data){
         this.count = 650;
         this.timerAceleration = 5;
+        this.nCoins = data.nCoins;
     }
 
     create(){
@@ -60,6 +61,13 @@ export default class Level2 extends Phaser.Scene{
         });
 
         this.anims.create({
+            key: "walk5",
+            frames:this.anims.generateFrameNumbers("person5",{start:0, end:3}),
+            frameRate: 4,
+            repeat: -1
+        });
+
+        this.anims.create({
             key: "walkDog",
             frames:this.anims.generateFrameNumbers("dog",{start: 0, end:3}),
             frameRate:4,
@@ -88,8 +96,6 @@ export default class Level2 extends Phaser.Scene{
 
         });
 
-        
-
         this.map = this.make.tilemap({key : "map2"});
 
         //LOAD AND CREATE LAYER
@@ -103,6 +109,9 @@ export default class Level2 extends Phaser.Scene{
         const tree2L = this.map.addTilesetImage("tree2", "tree2");
         const bushL = this.map.addTilesetImage("bush", "bush");
         const crossWalkL = this.map.addTilesetImage("crosswalk", "crosswalk");
+        const fenceL = this.map.addTilesetImage("fence", "fence");
+        const coneL = this.map.addTilesetImage("cone", "cone");
+        //const holeL = this.map.addTilesetImage("hole", "hole");
 
         const streetLayer = this.map.createLayer("street", streetL,0,0);   
         const groundLayer = this.map.createLayer("ground", groundL,0,0);
@@ -111,9 +120,13 @@ export default class Level2 extends Phaser.Scene{
         const cornerLayer = this.map.createLayer("corner", cornerL,0,0);  
         const crosswalkLayer = this.map.createLayer("crosswalk", crossWalkL,0,0); 
         const bushLayer = this.map.createLayer("bush", bushL,0,0);
+        //const holeLayer = this.map.createLayer("hole", holeL,0,0);
 
         const treeLayer = this.map.createLayer("tree", treeL,0,0);
         const tree2Layer = this.map.createLayer("tree2", tree2L,0,0);
+
+        const fenceLayer = this.map.createLayer("fence", fenceL,0,0);
+        const coneLayer = this.map.createLayer("cone", coneL,0,0);
         //CREATE OBJECTS
         const objectsLayer = this.map.getObjectLayer("objects");
 
@@ -197,6 +210,23 @@ export default class Level2 extends Phaser.Scene{
             repeat: -1
         });
 
+        spawnPoint2 = this.map.findObject(
+            "objects",
+            (obj) => obj.name === "person5"
+        );
+
+        this.person5 = this.physics.add.sprite(spawnPoint2.x, spawnPoint2.y, "person5");
+        this.person5.setCollideWorldBounds(true);
+
+        this.tweens.add({
+            targets: this.person5,
+            x: 2035,
+            flipX: true,
+            yoyo: true,
+            duration: 3000,
+            repeat: -1
+        });
+
         let spawnPoint3 = this.map.findObject(
             "objects",
             (obj) => obj.name === "dog"
@@ -204,6 +234,14 @@ export default class Level2 extends Phaser.Scene{
 
         this.dog = this.physics.add.sprite(spawnPoint3.x, spawnPoint3.y, "dog");
         this.dog.setCollideWorldBounds(true);
+
+        spawnPoint3 = this.map.findObject(
+            "objects",
+            (obj) => obj.name === "dog2"
+        );
+
+        this.dog2 = this.physics.add.sprite(spawnPoint3.x, spawnPoint3.y, "dog");
+        this.dog2.setCollideWorldBounds(true);
         
         spawnPoint = this.map.findObject(
             "objects",
@@ -261,6 +299,34 @@ export default class Level2 extends Phaser.Scene{
             loop: -1,
         });
 
+        spawnPoint = this.map.findObject(
+            "objects",
+            (obj) => obj.name === "car5"
+        );
+        this.car5 = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, "car");
+
+        this.tweens.add({
+            targets: this.car5,
+            x: 4500,
+            hold: 100,
+            duration: 1200,
+            loop: -1,
+        });
+
+        spawnPoint = this.map.findObject(
+            "objects",
+            (obj) => obj.name === "car6"
+        );
+        this.car6 = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, "car5").setFlipX(90);
+
+        this.tweens.add({
+            targets: this.car6,
+            x: 200,
+            hold: 100,
+            duration: 1300,
+            loop: -1,
+        });
+
 
         this.coins = this.physics.add.group();
         objectsLayer.objects.forEach((objData) => {
@@ -296,6 +362,17 @@ export default class Level2 extends Phaser.Scene{
            }
         });
 
+        this.holes = this.physics.add.group();
+        objectsLayer.objects.forEach((objData)=>{
+           const {x = 0, y = 0, name} = objData;
+           switch(name){
+            case "hole" : {
+                const hole = this.holes.create(x,y,"hole");
+                break;
+            }
+           }
+        });
+
           this.cursors = this.input.keyboard.createCursorKeys();  
           this.keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 
@@ -315,7 +392,7 @@ export default class Level2 extends Phaser.Scene{
             this.groundLayer
         );
 
-        this.physics.add.collider(
+        this.physics.add.overlap(
             this.player,
             this.coins,
             this.collectCoin,
@@ -331,7 +408,7 @@ export default class Level2 extends Phaser.Scene{
             this
         );
 
-        this.physics.add.collider(
+        this.physics.add.overlap(
             this.player,
             this.person2,
             this.loseAttemp,
@@ -339,7 +416,7 @@ export default class Level2 extends Phaser.Scene{
             this
         );
 
-        this.physics.add.collider(
+        this.physics.add.overlap(
             this.player,
             this.person3,
             this.loseAttemp,
@@ -347,7 +424,23 @@ export default class Level2 extends Phaser.Scene{
             this
         );
 
-        this.physics.add.collider(
+        this.physics.add.overlap(
+            this.player,
+            this.person4,
+            this.loseAttemp,
+            null,
+            this
+        );
+
+        this.physics.add.overlap(
+            this.player,
+            this.person5,
+            this.loseAttemp,
+            null,
+            this
+        );
+
+        this.physics.add.overlap(
             this.player,
             this.car,
             this.loseAttemp,
@@ -355,7 +448,7 @@ export default class Level2 extends Phaser.Scene{
             this
         );
 
-        this.physics.add.collider(
+        this.physics.add.overlap(
             this.player,
             this.car2,
             this.loseAttemp,
@@ -363,7 +456,7 @@ export default class Level2 extends Phaser.Scene{
             this
         );
 
-        this.physics.add.collider(
+        this.physics.add.overlap(
             this.player,
             this.car3,
             this.loseAttemp,
@@ -371,7 +464,7 @@ export default class Level2 extends Phaser.Scene{
             this
         );
 
-        this.physics.add.collider(
+        this.physics.add.overlap(
             this.player,
             this.car4,
             this.loseAttemp,
@@ -379,7 +472,46 @@ export default class Level2 extends Phaser.Scene{
             this
         );
 
-        this.physics.add.collider(
+        this.physics.add.overlap(
+            this.player,
+            this.car5,
+            this.loseAttemp,
+            null,
+            this
+        );
+
+        this.physics.add.overlap(
+            this.player,
+            this.car6,
+            this.loseAttemp,
+            null,
+            this
+        );
+
+        this.physics.add.overlap(
+            this.player,
+            this.holes,
+            this.loseAttemp,
+            null,
+            this
+        );
+
+        this.physics.add.overlap(
+            this.player,
+            this.dog,
+            this.loseAttemp,
+            null,
+            this
+        );
+        this.physics.add.overlap(
+            this.player,
+            this.dog2,
+            this.loseAttemp,
+            null,
+            this
+        );
+
+        this.physics.add.overlap(
             this.player,
             this.drinks,
             this.playerAceleration,
@@ -387,7 +519,7 @@ export default class Level2 extends Phaser.Scene{
             this
         );
 
-        this.physics.add.collider(
+        this.physics.add.overlap(
             this.player,
             this.clocks,
             this.timeIncrement,
@@ -403,14 +535,29 @@ export default class Level2 extends Phaser.Scene{
             this
         );
 
+        this.physics.add.collider(
+            this.player,
+            this.holeLayer,
+            this.loseAttemp,
+            null, 
+            this
+        );
+
         
         groundLayer.setCollisionByProperty({ colision: true });
         this.physics.add.collider(groundLayer, this.player);   
         
         bushLayer.setCollisionByProperty({colision:true});
         this.physics.add.collider(bushLayer, this.player);
+
+        fenceLayer.setCollisionByProperty({colision:true});
+        this.physics.add.collider(fenceLayer, this.player)
+
+        coneLayer.setCollisionByProperty({colision:true});
+        this.physics.add.collider(coneLayer, this.player)
+
+        //holeLayer.setCollisionByProperty({colision:true});
         
-        this.nCoins = 0;
         this.scoreText = this.add.text(20, 20, "Score:" + this.nCoins, {
         fontSize: "32px",
         fontStyle: "bold",
@@ -433,7 +580,7 @@ export default class Level2 extends Phaser.Scene{
             loop: true
         });
 
-        this.attempts = 3;
+        this.attempts = 5;
         console.log(this.dog);
     }
 
@@ -442,11 +589,23 @@ export default class Level2 extends Phaser.Scene{
         this.person2.anims.play("walk2", true);
         this.person3.anims.play("walk3", true);
         this.person4.anims.play("walk4", true);
+        this.person5.anims.play("walk5", true);
         this.check.anims.play("spinCheck", true);
         this.dog.anims.play("walkDog", true);
-        this.dogFollows();
+        this.dogFollows(this.dog, this.player,300);
+
+        console.log(this.player.y);
+
+        if(this.player.y < 2553){
+        this.dogFollows(this.dog2, this.player,100);
+        }
+
+        if(this.dog2.y <=1686){
+            this.dog2.setVelocity(0);
+            this.dog.anims.stop();
+        }
         
-        if(this.dog.y <=3600){
+        if(this.dog.y <=5065){
             this.dog.setVelocity(0);
             this.dog.anims.stop();
         }
@@ -508,13 +667,13 @@ export default class Level2 extends Phaser.Scene{
     loseAttemp(){
             this.attempts--;
             this.player.setPosition(this.spawnPointPlayer.x, this.spawnPointPlayer.y);
-            this.dog.setPosition(1200, 5500);
+            this.dog.setPosition(1200, 6500);
             this.player.setAngle(0);
             this.timer = 60;
     }
 
     isWin(){
-        this.scene.start("LevelWin",{
+        this.scene.start("LevelWin2",{
             nCoins : this.nCoins,
             timer : this.timer,
             attempts : this.attempts
@@ -551,7 +710,7 @@ export default class Level2 extends Phaser.Scene{
         clock.disableBody(true,true);
     }
 
-    dogFollows(){
-        this.physics.moveToObject(this.dog, this.player, 300);
+    dogFollows(dog, player,vel){
+        this.physics.moveToObject(dog, player, vel);
     }
 }

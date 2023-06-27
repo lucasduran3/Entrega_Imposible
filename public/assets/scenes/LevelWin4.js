@@ -1,6 +1,6 @@
-export default class LevelWin extends Phaser.Scene{
+export default class LevelWin4 extends Phaser.Scene{
     constructor(){
-        super("LevelWin");
+        super("LevelWin4");
     }
     nCoins;
     timer;
@@ -24,7 +24,7 @@ export default class LevelWin extends Phaser.Scene{
     
         contButton.on("pointerdown", ()=>{
             this.game.canvas.style.cursor = "default";
-            this.scene.start("Level2",{
+            this.scene.start("GameWin",{
                 nCoins : this.nCoins,
             });
         });

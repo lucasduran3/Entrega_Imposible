@@ -3,16 +3,19 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "menu.json",
+    "activeFile": "",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "Todos los archivos (*)",
     "fileStates": {
         "": {
-            "scaleInDock": 0.125,
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "#corner": {
+            "scaleInDock": 1
+        },
+        "#floor": {
             "scaleInDock": 1
         },
         "#ground": {
@@ -28,11 +31,11 @@
             "expandedObjectLayers": [
                 5
             ],
-            "scale": 0.125,
-            "selectedLayer": 8,
+            "scale": 0.25,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 1596,
-                "y": 2396
+                "x": 1650,
+                "y": 4176
             }
         },
         "level1.json#bush": {
@@ -111,15 +114,19 @@
             "expandedObjectLayers": [
                 10
             ],
-            "scale": 0.25,
-            "selectedLayer": 8,
+            "scale": 0.33,
+            "selectedLayer": 10,
             "viewCenter": {
-                "x": 1736,
-                "y": 2398
+                "x": 1422.7272727272727,
+                "y": 4981.818181818182
             }
         },
         "level2.json#bush": {
-            "scaleInDock": 2
+            "scaleInDock": 1
+        },
+        "level2.json#cone": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "level2.json#corner": {
             "scaleInDock": 1
@@ -127,8 +134,17 @@
         "level2.json#crosswalk": {
             "scaleInDock": 1
         },
+        "level2.json#fence": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "level2.json#ground": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "level2.json#hole": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "level2.json#sidewalk": {
             "scaleInDock": 1
@@ -142,12 +158,79 @@
         "level2.json#tree2": {
             "scaleInDock": 1
         },
-        "menu.json": {
+        "level3.json": {
+            "expandedObjectLayers": [
+                14
+            ],
             "scale": 0.25,
-            "selectedLayer": 0,
+            "selectedLayer": 11,
             "viewCenter": {
-                "x": 592,
-                "y": -504
+                "x": 1906,
+                "y": 9180
+            }
+        },
+        "level3.json#build": {
+            "scaleInDock": 0.33
+        },
+        "level3.json#build2": {
+            "scaleInDock": 0.25
+        },
+        "level3.json#build3": {
+            "scaleInDock": 0.33
+        },
+        "level3.json#build4": {
+            "scaleInDock": 0.33
+        },
+        "level3.json#build5": {
+            "scaleInDock": 0.5
+        },
+        "level3.json#build6": {
+            "scaleInDock": 0.5
+        },
+        "level3.json#corner": {
+            "scaleInDock": 1
+        },
+        "level3.json#floor": {
+            "scaleInDock": 1
+        },
+        "level3.json#pavement": {
+            "scaleInDock": 1
+        },
+        "level3.json#sidewalk": {
+            "scaleInDock": 1
+        },
+        "level3.json#street": {
+            "scaleInDock": 0.33
+        },
+        "level3.json#trafficLight": {
+            "scaleInDock": 1
+        },
+        "level4.json": {
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 0.125,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 456,
+                "y": 9552
+            }
+        },
+        "level4.json#floor": {
+            "scaleInDock": 1
+        },
+        "level4.json#ground": {
+            "scaleInDock": 1
+        },
+        "level4.json#street": {
+            "scaleInDock": 0.33
+        },
+        "menu.json": {
+            "scale": 0.75,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 1461.333333333333,
+                "y": 899.9999999999999
             }
         },
         "menu.json#backMenu": {
@@ -176,19 +259,18 @@
         }
     },
     "last.imagePath": "D:/Info anterior/CarpetaProtegida/Lucas/unraf/2do/1er cuatrimestre/programacion/TpFinal/public/assets/images",
-    "map.height": 34,
+    "map.height": 400,
     "map.lastUsedFormat": "json",
-    "map.width": 60,
+    "map.width": 100,
     "openFiles": [
-        "level1.json",
-        "level2.json",
-        "menu.json"
     ],
     "project": "",
     "property.type": "bool",
     "recentFiles": [
-        "level1.json",
+        "level4.json",
+        "level3.json",
         "level2.json",
+        "level1.json",
         "menu.json"
     ],
     "resizeMap.removeObjects": true,
