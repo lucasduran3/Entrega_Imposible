@@ -22,7 +22,7 @@ const config = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
     min: {
-      width: 1900,
+      width: window.innerWidth,
       height: window.innerHeight,
     },
     max: {
@@ -33,8 +33,8 @@ const config = {
   fx: {
     glow: {
         distance: 32,
-        quality: 0.1
-    }
+        quality: 0.1,
+    },
 },
   physics: {
     default: "arcade",
@@ -42,9 +42,10 @@ const config = {
       gravity:{
         x:0,
         y:0
-      }
+      },
+      debug : false,
     }, 
-    debug : true
+    
   },
   // List of scenes to load
   // Only the first scene will be shown

@@ -687,7 +687,6 @@ export default class Level3 extends Phaser.Scene{
             this.attempts--;
             this.player.setPosition(this.spawnPointPlayer.x, this.spawnPointPlayer.y);
             this.player.setAngle(0);
-            this.timer = 60;
     }
 
     isWin(){

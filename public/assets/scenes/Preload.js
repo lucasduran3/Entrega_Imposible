@@ -13,7 +13,7 @@ export default class Preload extends Phaser.Scene{
         this.load.image("ground2", "./public/assets/images/ground2.png");
         this.load.image("street", "./public/assets/images/street.png");
 
-        this.load.spritesheet("player", "./public/assets/images/player.png", {frameWidth: 192, frameHeight: 240});
+        this.load.spritesheet("player", "./public/assets/images/player.png", {frameWidth: 81, frameHeight: 213});
 
         this.load.spritesheet("car", "./public/assets/images/car.png",{frameWidth: 400, frameHeight: 228});
         this.load.spritesheet("car5", "./public/assets/images/car5.png",{frameWidth: 400, frameHeight: 207});
@@ -22,11 +22,11 @@ export default class Preload extends Phaser.Scene{
         this.load.image("car7", "./public/assets/images/car7.png");
         this.load.image("car8", "./public/assets/images/car8.png");
 
-        this.load.spritesheet("person", "./public/assets/images/person.png", {frameWidth:128, frameHeight:128});
-        this.load.spritesheet("person2", "./public/assets/images/person2.png", {frameWidth:128, frameHeight:128});
-        this.load.spritesheet("person3", "./public/assets/images/person3.png",{frameWidth:96, frameHeight:96});
-        this.load.spritesheet("person4", "./public/assets/images/person5.png",{frameWidth:128, frameHeight:128});
-        this.load.spritesheet("person5", "./public/assets/images/person4.png",{frameWidth:128, frameHeight:128});
+        this.load.spritesheet("person", "./public/assets/images/person.png", {frameWidth:60, frameHeight:124});
+        this.load.spritesheet("person2", "./public/assets/images/person2.png", {frameWidth:60, frameHeight:124});
+        this.load.spritesheet("person3", "./public/assets/images/person3.png",{frameWidth:52, frameHeight:108});
+        this.load.spritesheet("person4", "./public/assets/images/person5.png",{frameWidth:60, frameHeight:100});
+        this.load.spritesheet("person5", "./public/assets/images/person4.png",{frameWidth:60, frameHeight:124});
         this.load.spritesheet("dog", "./public/assets/images/dog.png",{frameWidth:44, frameHeight:104});
         
         //POWER UPS

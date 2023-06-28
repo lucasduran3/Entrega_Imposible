@@ -55,7 +55,7 @@ export default class Level2 extends Phaser.Scene{
 
         this.anims.create({
             key: "walk4",
-            frames:this.anims.generateFrameNumbers("person4",{start:0, end:1}),
+            frames:this.anims.generateFrameNumbers("person4",{start:0, end:3}),
             frameRate: 4,
             repeat: -1
         });
@@ -669,7 +669,6 @@ export default class Level2 extends Phaser.Scene{
             this.player.setPosition(this.spawnPointPlayer.x, this.spawnPointPlayer.y);
             this.dog.setPosition(1200, 6500);
             this.player.setAngle(0);
-            this.timer = 60;
     }
 
     isWin(){

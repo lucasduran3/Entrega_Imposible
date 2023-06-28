@@ -122,6 +122,7 @@ export default class Level1 extends Phaser.Scene{
           );
           this.player = this.physics.add.sprite(this.spawnPointPlayer.x, this.spawnPointPlayer.y, "player");
           this.player.setCollideWorldBounds(true);
+          this.player.setCircle(50,-10,45);
         
         spawnPoint = this.map.findObject(
             "objects",
@@ -521,7 +522,6 @@ export default class Level1 extends Phaser.Scene{
             this.attempts--;
             this.player.setPosition(this.spawnPointPlayer.x, this.spawnPointPlayer.y);
             this.player.setAngle(0);
-            this.timer = 60;
     }
 
     isWin(){
