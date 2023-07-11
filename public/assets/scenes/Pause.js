@@ -10,11 +10,13 @@ export default class Pause extends Phaser.Scene{
             fill: "#FFF"
             });
         this.cursors = this.input.keyboard.createCursorKeys();  
-        this.keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);    
+        this.keyEsc = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);    
+
+        this.add.image(1920/2,1080/2,"phonePause").setScrollFactor(0);
     }
 
     update(){
-        if(this.keyP.isDown){   
+        if(this.keyEsc.isDown){   
             this.scene.resume("Level1");
             this.scene.stop("Pause");
         }

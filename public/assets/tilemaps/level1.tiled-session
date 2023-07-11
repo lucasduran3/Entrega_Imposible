@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "menu.json",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "Todos los archivos (*)",
@@ -226,27 +226,27 @@
             "scaleInDock": 0.33
         },
         "menu.json": {
-            "scale": 0.75,
-            "selectedLayer": 6,
+            "scale": 0.25,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 1461.333333333333,
-                "y": 899.9999999999999
+                "x": 418,
+                "y": 332
             }
         },
         "menu.json#backMenu": {
             "scaleInDock": 0.25
         },
         "menu.json#bar": {
-            "scaleInDock": 0.33
+            "scaleInDock": 0.0625
         },
         "menu.json#button": {
-            "scaleInDock": 0.5
+            "scaleInDock": 0.33
         },
         "menu.json#carMenu": {
-            "scaleInDock": 0.125
+            "scaleInDock": 0.5
         },
         "menu.json#charMenu": {
-            "scaleInDock": 0.25
+            "scaleInDock": 0.5
         },
         "menu.json#helpButton": {
             "scaleInDock": 0.75
@@ -259,25 +259,26 @@
         }
     },
     "last.imagePath": "D:/Info anterior/CarpetaProtegida/Lucas/unraf/2do/1er cuatrimestre/programacion/TpFinal/public/assets/images",
-    "map.height": 400,
+    "map.height": 34,
     "map.lastUsedFormat": "json",
-    "map.width": 100,
+    "map.width": 60,
     "openFiles": [
+        "menu.json"
     ],
     "project": "",
     "property.type": "bool",
     "recentFiles": [
+        "menu.json",
         "level4.json",
         "level3.json",
         "level2.json",
-        "level1.json",
-        "menu.json"
+        "level1.json"
     ],
     "resizeMap.removeObjects": true,
     "tileset.embedInMap": true,
     "tileset.tileSize": {
         "height": 32,
-        "width": 32
+        "width": 38
     },
     "tileset.type": 0
 }

@@ -5,23 +5,24 @@ export default class Menu extends Phaser.Scene{
 
     create(){
         this.sky = this.physics.add.sprite(0,0,"sky").setScale(10000);
-        this.back = this.physics.add.sprite(1080,650,"back");
-        this.car = this.physics.add.sprite(700,920,"carMenu").setAngle(-10);
-        this.char = this.physics.add.sprite(1300,820,"char").setFlipX(90);
+        this.back = this.physics.add.sprite(700,680,"backMenu");
+        this.car = this.physics.add.sprite(350,910,"carMenu").setAngle(-10);
+        this.char = this.physics.add.sprite(1000,820,"charMenu").setFlipX(90);
+        
 
-        this.bar = this.physics.add.sprite(1800,675,"bar");
-        this.bar = this.physics.add.sprite(1800,475,"bar");
+        this.bar = this.physics.add.sprite(1700,675,"bar");
+        this.bar = this.physics.add.sprite(1700,475,"bar");
         //this.help = this.physics.add.sprite(1800,875,"help");
 
-        const playButton = this.add.image(1800,575, "play").setInteractive();
+        const playButton = this.add.image(1700,475, "button").setInteractive();
         playButton.on("pointerover", ()=>{
             this.game.canvas.style.cursor = "pointer"
         });
 
         playButton.on('pointerover', function () {
-            this.setAngle(-4);
+            this.setAngle(-2);
             this.setScale(1.105);
-            this.setTint(0xD0BF0f);
+            //this.setTint(0xD0BF0f);
         });
 
         playButton.on('pointerout', function () {
@@ -39,7 +40,7 @@ export default class Menu extends Phaser.Scene{
             this.scene.start("Level1");
         });
 
-        const helpButton = this.add.image(1800,875, "help").setInteractive();
+        const helpButton = this.add.image(1700,875, "helpButton").setInteractive();
         helpButton.on("pointerover", ()=>{
             this.game.canvas.style.cursor = "pointer"
         });
@@ -65,5 +66,12 @@ export default class Menu extends Phaser.Scene{
             this.scene.start("Help");
         });
 
+        /*this.add.text(100, 100, 'Entrega Imposible', {
+            fontFamily: 'backto1982',
+            fontSize: 140,
+            
+        });*/
+
+        this.logo = this.physics.add.sprite(700,100,"logo");
     }
 }

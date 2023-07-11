@@ -67,12 +67,20 @@ export default class Preload extends Phaser.Scene{
         this.load.image("keyDown", "./public/assets/images/keyDown.png");
         this.load.image("keyRight", "./public/assets/images/keyRight.png");
         this.load.image("keyLeft", "./public/assets/images/keyLeft.png");
+        this.load.image("keyEsc", "./public/assets/images/keyEsc.png");
+        this.load.image("logo", "./public/assets/images/logo.png");
+        this.load.image("rect", "./public/assets/images/rect.png");
+        this.load.image("coinGUI", "./public/assets/images/coinGUI.png");
+        this.load.image("heart", "./public/assets/images/heart.png")
+        this.load.image("pauseButton", "./public/assets/images/pauseButton.png");
+        this.load.image("phonePause", "./public/assets/images/phonePause.png");
+        
 
         //ASSETS MENU
-        this.load.image("play", "./public/assets/images/button.png");
-        this.load.image("help", "./public/assets/images/helpButton.png");
-        this.load.image("back", "./public/assets/images/backMenu.png");
-        this.load.image("char", "./public/assets/images/charMenu.png");
+        this.load.image("button", "./public/assets/images/button.png");
+        this.load.image("helpButton", "./public/assets/images/helpButton.png");
+        this.load.image("backMenu", "./public/assets/images/backMenu.png");
+        this.load.image("charMenu", "./public/assets/images/charMenu.png");
         this.load.image("carMenu", "./public/assets/images/carMenu.png");
         this.load.image("sky", "./public/assets/images/sky.png");
         this.load.image("bar", "./public/assets/images/bar.png");
@@ -80,6 +88,6 @@ export default class Preload extends Phaser.Scene{
         
     }
     create(){
-        this.scene.start("Menu");
+        this.scene.start("Level1");
     }
 }

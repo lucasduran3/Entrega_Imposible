@@ -16,26 +16,20 @@ import GameWin from "./public/assets/scenes/GameWin.js";
 const config = {
   type: Phaser.AUTO,
   
-  width: window.innerWidth,
-  height: window.innerHeight,
+  width: 1920,
+  height: 1080,
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
     min: {
-      width: window.innerWidth,
-      height: window.innerHeight,
+      width: 1280,
+      height: 720,
     },
     max: {
-      width: 1600,
-      height: 1200,
+      width: 1920,
+      height: 1080,
     },
   },
-  fx: {
-    glow: {
-        distance: 32,
-        quality: 0.1,
-    },
-},
   physics: {
     default: "arcade",
     arcade:{
