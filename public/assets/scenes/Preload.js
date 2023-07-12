@@ -73,7 +73,15 @@ export default class Preload extends Phaser.Scene{
         this.load.image("coinGUI", "./public/assets/images/coinGUI.png");
         this.load.image("heart", "./public/assets/images/heart.png")
         this.load.image("pauseButton", "./public/assets/images/pauseButton.png");
+
+        //HELP
         this.load.image("phonePause", "./public/assets/images/phonePause.png");
+        this.load.image("playPause", "./public/assets/images/playPause.png");
+        this.load.image("helpPause", "./public/assets/images/helpPause.png");
+        this.load.image("helpLetter1", "./public/assets/images/helpLetter1.png");
+        this.load.image("helpLetter2", "./public/assets/images/helpLetter2.png");
+        this.load.image("helpLetter3", "./public/assets/images/helpLetter3.png");
+        this.load.image("backButton", "./public/assets/images/backButton.png");
         
 
         //ASSETS MENU
@@ -85,9 +93,13 @@ export default class Preload extends Phaser.Scene{
         this.load.image("sky", "./public/assets/images/sky.png");
         this.load.image("bar", "./public/assets/images/bar.png");
         this.load.image("title", "./public/assets/images/title.png");
+
+        //WIN
+        this.load.image("phoneWin", "./public/assets/images/phoneWin.png");
+        this.load.image("star", "./public/assets/images/star.png");
         
     }
     create(){
-        this.scene.start("Menu");
+        this.scene.start("Level1");
     }
 }

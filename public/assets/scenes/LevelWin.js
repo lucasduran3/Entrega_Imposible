@@ -6,33 +6,64 @@ export default class LevelWin extends Phaser.Scene{
     timer;
     attempts;
     text;
+    scoreText;
+    extraScore;
+    firstScore;
     init(data){
         this.nCoins = data.nCoins;
         this.timer = data.timer;
         this.attempts = data.attempts;
     }
-
+    
     create(){
-        const contButton = this.add.image(950,540, "contButton").setInteractive().setScale(0.7);
-        contButton.on("pointerover", ()=>{
+        this.firstScore = this.nCoins;
+        this.add.image(1920/2,1080/2,"phoneWin").setScrollFactor(0);
+        if(this.nCoins >= 450 && this.timer>20){
+            this.add.image(820,450,"star").setScrollFactor(0);
+            this.add.image(960,450,"star").setScrollFactor(0);
+            this.add.image(1100,450,"star").setScrollFactor(0);
+            this.extraScore = 100;
+        } else if(this.nCoins>=360){
+            this.add.image(820,450,"star").setScrollFactor(0);
+            this.add.image(960,450,"star").setScrollFactor(0);
+            this.extraScore = 50;
+        } else{
+            this.add.image(960,450,"star").setScrollFactor(0);
+            this.extraScore = 25;
+        }
+
+        this.nCoins += this.extraScore;
+        this.scoreText = this.add.text(770, 600, "            " + this.firstScore + "  +  " + this.extraScore + "  =  " + this.nCoins,{
+            fontSize: "40px",
+            fontFamily: 'arcadeClassic',
+            }).setScrollFactor(0);
+            this.scoreText.setScrollFactor(0);
+            this.add.image(770,620,"coinGUI").setScrollFactor(0).setScale(0.3);
+       
+        const playButton = this.add.image(950,850, "playPause").setInteractive();
+        playButton.on("pointerover", ()=>{
             this.game.canvas.style.cursor = "pointer"
         });
-    
-        contButton.on("pointerout", ()=>{
-            this.game.canvas.style.cursor = "default";
-        });
-    
-        contButton.on("pointerdown", ()=>{
-            this.game.canvas.style.cursor = "default";
-            this.scene.start("Level2",{
-                nCoins : this.nCoins,
-            });
+
+        playButton.on('pointerover', function () {
+            this.setScale(1.105);
+            //this.setTint(0xD0BF0f);
         });
 
-        this.text = this.add.text(200,150,"Score:" + this.nCoins + " Tiempo:" + this.timer + " Intentos:" + this.attempts,{
-            fontSize: "40px",
-            fontStyle: "bold",
-            fill: "#FFF"
+        playButton.on('pointerout', function () {
+            this.setScale(1);
+            this.clearTint();     
+        });
+
+        playButton.on("pointerout", ()=>{
+            this.game.canvas.style.cursor = "default";
+        });
+
+        playButton.on("pointerdown", ()=>{
+            this.game.canvas.style.cursor = "default";    
+            this.scene.start("Level2",{
+                nCoins : this.nCoins
+            });
         });
     }
 }
