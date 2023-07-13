@@ -12,13 +12,17 @@ export default class Level3 extends Phaser.Scene{
     spawnPointCar;
     count;
     timedEvent;
+    keyScene;
+    newScore;
     init(data){
+        this.newScore = 0;
         this.count = 650;
         this.timerAceleration = 5;
         this.nCoins = data.nCoins;
     }
 
     create(){
+        this.keyScene = "Level3";
         this.anims.create({
             key: "ride",
             frames: this.anims.generateFrameNumbers("player", { start: 1, end: 2 }),
@@ -45,34 +49,6 @@ export default class Level3 extends Phaser.Scene{
             frameRate: 10,
             repeat: -1,
         });
-
-        /*this.anims.create({
-            key: "walk3",
-            frames:this.anims.generateFrameNumbers("person3",{start:0, end:3}),
-            frameRate: 4,
-            repeat: -1,
-        });
-
-        this.anims.create({
-            key: "walk4",
-            frames:this.anims.generateFrameNumbers("person4",{start:0, end:1}),
-            frameRate: 4,
-            repeat: -1
-        });
-
-        this.anims.create({
-            key: "walk5",
-            frames:this.anims.generateFrameNumbers("person5",{start:0, end:3}),
-            frameRate: 4,
-            repeat: -1
-        });
-
-        this.anims.create({
-            key: "walkDog",
-            frames:this.anims.generateFrameNumbers("dog",{start: 0, end:3}),
-            frameRate:4,
-            repeat:-1
-        });*/
 
         this.anims.create({
             key:"spin",
@@ -101,6 +77,13 @@ export default class Level3 extends Phaser.Scene{
             frameRate:10,
             repeat:-1
 
+        });
+
+        this.anims.create({
+            key: "walkDog",
+            frames:this.anims.generateFrameNumbers("dog",{start: 0, end:3}),
+            frameRate:4,
+            repeat:-1
         });
 
         this.map = this.make.tilemap({key : "map3"});
@@ -145,6 +128,7 @@ export default class Level3 extends Phaser.Scene{
           );
           this.player = this.physics.add.sprite(this.spawnPointPlayer.x, this.spawnPointPlayer.y, "player");
           this.player.setCollideWorldBounds(true);
+          this.player.setCircle(50,-10,45);
         
         spawnPoint = this.map.findObject(
             "objects",
@@ -178,70 +162,6 @@ export default class Level3 extends Phaser.Scene{
             duration: 5000,
             repeat: -1
         });
-
-        /*let spawnPoint2 = this.map.findObject(
-            "objects",
-            (obj) => obj.name === "person3"
-        );
-
-        this.person3 = this.physics.add.sprite(spawnPoint2.x, spawnPoint2.y, "person3").setFlipX(90);
-        this.person3.setCollideWorldBounds(true);
-
-        this.tweens.add({
-            targets: this.person3,
-            x: 1200,
-            flipX: true,
-            yoyo: true,
-            duration: 5000,
-            repeat: -1
-        });
-
-        spawnPoint2 = this.map.findObject(
-            "objects",
-            (obj) => obj.name === "person4"
-        );
-
-        this.person4 = this.physics.add.sprite(spawnPoint2.x, spawnPoint2.y, "person4");
-        this.person4.setCollideWorldBounds(true);
-
-        this.tweens.add({
-            targets: this.person4,
-            x: 2035,
-            flipX: true,
-            yoyo: true,
-            duration: 10000,
-            repeat: -1
-        });
-
-        spawnPoint2 = this.map.findObject(
-            "objects",
-            (obj) => obj.name === "person5"
-        );
-
-        this.person5 = this.physics.add.sprite(spawnPoint2.x, spawnPoint2.y, "person5");
-        this.person5.setCollideWorldBounds(true);
-
-        this.tweens.add({
-            targets: this.person5,
-            x: 2035,
-            flipX: true,
-            yoyo: true,
-            duration: 3000,
-            repeat: -1
-        });
-
-        let spawnPoint3 = this.map.findObject(
-            "objects",
-            (obj) => obj.name === "dog"
-        );
-
-        this.dog = this.physics.add.sprite(spawnPoint3.x, spawnPoint3.y, "dog");
-        this.dog.setCollideWorldBounds(true);
-
-        spawnPoint3 = this.map.findObject(
-            "objects",
-            (obj) => obj.name === "dog2"
-        );*/
         
         spawnPoint = this.map.findObject(
             "objects",
@@ -360,15 +280,6 @@ export default class Level3 extends Phaser.Scene{
             (obj) => obj.name === "car9"
         );
 
-        /*this.car9 = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, "car8");
-        this.tweens.add({
-            targets: this.car9,
-            y: 8000,
-            hold: 100,
-            duration: 10000,
-            loop: -1,
-        });*/
-
         spawnPoint = this.map.findObject(
             "objects",
             (obj) => obj.name === "car10"
@@ -396,17 +307,27 @@ export default class Level3 extends Phaser.Scene{
             duration: 2000,
             loop: -1,
         });
+
+        let spawnPoint3 = this.map.findObject(
+            "objects",
+            (obj) => obj.name === "dog"
+        );
+        this.dog = this.physics.add.sprite(spawnPoint3.x, spawnPoint3.y, "dog");
+        this.dog.setCollideWorldBounds(true);
+        
+        var c = 0;
         this.coins = this.physics.add.group();
         objectsLayer.objects.forEach((objData) => {
          const { x = 0, y = 0, name } = objData;
             switch (name) {
             case "coin": {
-
+                c++;
           const coin = this.coins.create(x, y, "coin").setScale(0.3).anims.play("spin", true);
           break;
         }
       }
     });
+    console.log(c);
 
         this.drinks = this.physics.add.group();
         objectsLayer.objects.forEach((objData)=>{
@@ -431,7 +352,7 @@ export default class Level3 extends Phaser.Scene{
         });
 
           this.cursors = this.input.keyboard.createCursorKeys();  
-          this.keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+          this.keyEsc = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
           this.cameras.main.startFollow(this.player);
           this.physics.world.setBounds(0,0, this.map.widthInPixels, this.map.heightInPixels);
@@ -589,23 +510,69 @@ export default class Level3 extends Phaser.Scene{
             this
         );
 
+        this.physics.add.overlap(
+            this.player,
+            this.dog,
+            this.loseAttemp,
+            null,
+            this
+        );
+
         floorLayer.setCollisionByProperty({colision:true});
         this.physics.add.collider(this.player, floorLayer);   
     
-        this.scoreText = this.add.text(20, 20, "Score:" + this.nCoins, {
-        fontSize: "32px",
-        fontStyle: "bold",
-        fill: "#FFF"
+        //GUI
+        this.add.image(1000,10,"rect").setScrollFactor(0);
+        const pauseButton = this.add.image(70,1010, "pauseButton").setInteractive().setScale(0.8);
+        pauseButton.on("pointerover", ()=>{
+            this.game.canvas.style.cursor = "pointer"
+        });
+
+        pauseButton.on('pointerover', function () {
+            this.setScale(1);
+            //this.setTint(0xD0BF0f);
+        });
+
+        pauseButton.on('pointerout', function () {
+            this.setScale(0.8);
+            this.clearTint();     
+        });
+
+        pauseButton.on("pointerout", ()=>{
+            this.game.canvas.style.cursor = "default";
+        });
+
+        pauseButton.on("pointerdown", ()=>{
+            this.game.canvas.style.cursor = "default";    
+            this.scene.launch("Pause",{
+                keySceneBack : this.keyScene
+            });
+            this.scene.pause("Level3");
+        });
+        pauseButton.setScrollFactor(0);
+        this.add.image(110,980,"keyEsc").setScrollFactor(0).setScale(0.8);
+
+        this.scoreText = this.add.text(35, 10, "            " + this.nCoins, {
+        fontSize: "40px",
+        fontFamily: 'arcadeClassic',
         });
         this.scoreText.setScrollFactor(0);
+        this.add.image(60,30,"coinGUI").setScrollFactor(0).setScale(0.3);
 
         this.timer = 60;
-        this.timerText = this.add.text(950,20, this.timer,{
-            fontSize:"32px",
-            fontStyle: "bold",
-            fill: "#FFF"
+        this.timerText = this.add.text(900,10, this.timer,{
+            fontSize:"45px",
+            fontFamily: 'arcadeClassic',
         });
         this.timerText.setScrollFactor(0);
+
+        this.attempts = 5;
+        this.attemptsText = this.add.text(1800,10, this.attempts,{
+            fontSize:"45px",
+            fontFamily: 'arcadeClassic',
+        });
+        this.attemptsText.setScrollFactor(0);
+        this.add.image(1750,30,"heart").setScrollFactor(0).setScale(1.5);
 
         this.time.addEvent({
             delay: 1000,
@@ -617,26 +584,27 @@ export default class Level3 extends Phaser.Scene{
         this.attempts = 5;
         console.log(this.dog);
 
-        //TUTORIAL
         
     }
 
     update(){
         this.person.anims.play("walk", true);
         this.person2.anims.play("walk2", true);
-        /*this.person3.anims.play("walk3", true);
-        this.person4.anims.play("walk4", true);
-        this.person5.anims.play("walk5", true);*/
         this.check.anims.play("spinCheck", true);
-        //this.exampleFunction();
+        this.dog.anims.play("walkDog", true);
+
+        if(this.player.y <1158){
+            this.dogFollows(this.dog, this.player,100);
+        }
+
         if(this.timer===0){
         this.loseAttemp();
         }
-        //this.movePerson();
-        if(this.keyP.isDown){   
-            
+        if(this.keyEsc.isDown){              
             this.scene.pause("Level3");
-            this.scene.launch("Pause");
+            this.scene.launch("Pause",{
+                keySceneBack : this.keyScene
+            });
         }
 
         if(this.cursors.up.isDown){
@@ -674,6 +642,7 @@ export default class Level3 extends Phaser.Scene{
 
     collectCoin(player, coin){
         this.nCoins+=10;
+        this.newScore+=10;
         this.scoreText.setText("Score: " + this.nCoins);
         coin.disableBody(true, true);
     }
@@ -693,7 +662,7 @@ export default class Level3 extends Phaser.Scene{
         this.scene.start("LevelWin3",{
             nCoins : this.nCoins,
             timer : this.timer,
-            attempts : this.attempts
+            newScore : this.newScore
         });
     }
 
@@ -723,21 +692,12 @@ export default class Level3 extends Phaser.Scene{
     }
 
     timeIncrement(player, clock){
-        this.timer+=5;
+        this.timer+=10;
         clock.disableBody(true,true);
     }
 
     dogFollows(dog, player){
         this.physics.moveToObject(dog, player, 300);
     }
-
-    /*exampleFunction(){
-        if(Phaser.Math.Distance.Between(this.car9.x, this.car9.y, this.car7.x, this.car7.y)<500){
-            this.tween7.pause(0);
-           console.log("Prueba");
-        }else{
-           // console.log("fjdsiof");
-        }
-    }*/
 
 }

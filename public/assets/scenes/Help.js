@@ -2,6 +2,10 @@ export default class Help extends Phaser.Scene{
     constructor(){
         super("Help");
     }
+    sceneBack;
+    init(data){
+        this.sceneBack = data.keySceneBack;
+    }
     create(){
         this.add.image(320,700,"bar");
 
@@ -25,8 +29,8 @@ export default class Help extends Phaser.Scene{
 
         backButton.on("pointerdown", ()=>{
             this.game.canvas.style.cursor = "default";    
-            this.scene.resume("Level1");
-            this.scene.stop("Pause");
+            this.scene.stop("Help");
+            this.scene.start(this.sceneBack);          
         });
 
         this.add.image(1920/2,700,"bar");

@@ -2,8 +2,9 @@ export default class Menu extends Phaser.Scene{
     constructor(){
         super("Menu");
     }
-
+    keyScene;
     create(){
+        this.keyScene = "Menu";
         this.sky = this.physics.add.sprite(0,0,"sky").setScale(10000);
         this.back = this.physics.add.sprite(700,680,"backMenu");
         this.car = this.physics.add.sprite(350,910,"carMenu").setAngle(-10);
@@ -63,7 +64,9 @@ export default class Menu extends Phaser.Scene{
 
         helpButton.on("pointerdown", ()=>{
             this.game.canvas.style.cursor = "default";    
-            this.scene.start("Help");
+            this.scene.launch("Help",{
+                keySceneBack : this.keyScene
+            });
         });
 
         /*this.add.text(100, 100, 'Entrega Imposible', {

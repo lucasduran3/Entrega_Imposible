@@ -20,7 +20,6 @@ export default class Pause extends Phaser.Scene{
 
         this.add.image(1920/2,1080/2,"phonePause").setScrollFactor(0);
 
-       // this.add.image(950,540,"playPause").setScrollFactor(0);
 
         const playButton = this.add.image(950,540, "playPause").setInteractive();
         playButton.on("pointerover", ()=>{
@@ -68,14 +67,15 @@ export default class Pause extends Phaser.Scene{
 
         helpButton.on("pointerdown", ()=>{
             this.game.canvas.style.cursor = "default";    
-            this.scene.start("Help");
-            this.scene.pause("Pause");
+            this.scene.launch("Help",{
+                keySceneBack : this.keyScene
+            });
+            this.scene.stop("Pause");
         });
     }
 
     update(){
         if(this.keyEsc.isDown){   
-            //this.scene.resume("Level1");
             this.scene.resume(this.sceneBack);     
             this.scene.stop("Pause");   
         }

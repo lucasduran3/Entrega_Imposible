@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level1.json",
+    "activeFile": "level3.json",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "Todos los archivos (*)",
@@ -163,10 +163,10 @@
                 14
             ],
             "scale": 0.25,
-            "selectedLayer": 11,
+            "selectedLayer": 12,
             "viewCenter": {
-                "x": 1906,
-                "y": 9180
+                "x": 1426,
+                "y": 2520
             }
         },
         "level3.json#build": {
@@ -190,8 +190,12 @@
         "level3.json#corner": {
             "scaleInDock": 1
         },
-        "level3.json#floor": {
+        "level3.json#crosswalk": {
             "scaleInDock": 1
+        },
+        "level3.json#floor": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "level3.json#pavement": {
             "scaleInDock": 1
@@ -212,8 +216,8 @@
             "scale": 0.125,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 456,
-                "y": 9552
+                "x": 452,
+                "y": 5096
             }
         },
         "level4.json#floor": {
@@ -263,16 +267,16 @@
     "map.lastUsedFormat": "json",
     "map.width": 60,
     "openFiles": [
-        "level1.json"
+        "level3.json"
     ],
     "project": "",
     "property.type": "bool",
     "recentFiles": [
+        "level3.json",
         "level2.json",
         "level1.json",
         "menu.json",
-        "level4.json",
-        "level3.json"
+        "level4.json"
     ],
     "resizeMap.removeObjects": true,
     "tileset.embedInMap": true,
