@@ -37,7 +37,7 @@ export default class Preload extends Phaser.Scene{
 
         this.load.image("playButton", "./public/assets/images/playButton.png");
         this.load.image("helpButton", "./public/assets/images/helpButton.png");
-        this.load.image("retryButton", "./public/assets/images/retryButton.png");
+        
         this.load.image("contButton", "./public/assets/images/contButton.png");
         this.load.image("sidewalk", "./public/assets/images/sidewalk.png");
         this.load.image("corner", "./public/assets/images/corner.png");
@@ -84,7 +84,7 @@ export default class Preload extends Phaser.Scene{
         this.load.image("backButton", "./public/assets/images/backButton.png");
         
 
-        //ASSETS MENU
+        //MENU
         this.load.image("button", "./public/assets/images/button.png");
         this.load.image("helpButton", "./public/assets/images/helpButton.png");
         this.load.image("backMenu", "./public/assets/images/backMenu.png");
@@ -97,9 +97,16 @@ export default class Preload extends Phaser.Scene{
         //WIN
         this.load.image("phoneWin", "./public/assets/images/phoneWin.png");
         this.load.image("star", "./public/assets/images/star.png");
+        this.load.image("like", "./public/assets/images/like.png");
+
+        //GAME OVER
+        this.load.image("phoneOver", "./public/assets/images/phoneOver.png");
+        this.load.image("homeButton", "./public/assets/images/homeButton.png");
+        this.load.image("retryButton", "./public/assets/images/retryButton.png");
+        this.load.image("dislike", "./public/assets/images/dislike.png")
         
     }
     create(){
-        this.scene.start("Level1");
+        this.scene.start("Level3");
     }
 }

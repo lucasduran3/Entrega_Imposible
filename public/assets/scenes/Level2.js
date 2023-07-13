@@ -12,13 +12,16 @@ export default class Level2 extends Phaser.Scene{
     spawnPointCar;
     count;
     timedEvent;
+    keyScene;
+    newScore;
     init(data){
         this.count = 650;
         this.timerAceleration = 5;
         this.nCoins = data.nCoins;
     }
-
     create(){
+        this.newScore = 0;
+        this.keyScene = "Level2";
         this.anims.create({
             key: "ride",
             frames: this.anims.generateFrameNumbers("player", { start: 1, end: 2 }),
@@ -141,7 +144,7 @@ export default class Level2 extends Phaser.Scene{
             (obj) => obj.name === "player"
           );
           this.player = this.physics.add.sprite(this.spawnPointPlayer.x, this.spawnPointPlayer.y, "player");
-          this.player.setCollideWorldBounds(true);
+          this.player.setCollideWorldBounds(true).setCircle(50,-10,45);
         
         spawnPoint = this.map.findObject(
             "objects",
@@ -309,7 +312,7 @@ export default class Level2 extends Phaser.Scene{
             targets: this.car5,
             x: 4500,
             hold: 100,
-            duration: 1200,
+            duration: 2400,
             loop: -1,
         });
 
@@ -327,7 +330,7 @@ export default class Level2 extends Phaser.Scene{
             loop: -1,
         });
 
-
+        var c = 0;
         this.coins = this.physics.add.group();
         objectsLayer.objects.forEach((objData) => {
          const { x = 0, y = 0, name } = objData;
@@ -335,10 +338,12 @@ export default class Level2 extends Phaser.Scene{
             case "coin": {
 
           const coin = this.coins.create(x, y, "coin").setScale(0.3).anims.play("spin", true);
+          c++;
           break;
         }
       }
     });
+    console.log(c);
 
         this.drinks = this.physics.add.group();
         objectsLayer.objects.forEach((objData)=>{
@@ -374,7 +379,7 @@ export default class Level2 extends Phaser.Scene{
         });
 
           this.cursors = this.input.keyboard.createCursorKeys();  
-          this.keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+          this.keyEsc = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
           this.cameras.main.startFollow(this.player);
           this.physics.world.setBounds(0,0, this.map.widthInPixels, this.map.heightInPixels);
@@ -555,23 +560,59 @@ export default class Level2 extends Phaser.Scene{
 
         coneLayer.setCollisionByProperty({colision:true});
         this.physics.add.collider(coneLayer, this.player)
-
-        //holeLayer.setCollisionByProperty({colision:true});
         
-        this.scoreText = this.add.text(20, 20, "Score:" + this.nCoins, {
-        fontSize: "32px",
-        fontStyle: "bold",
-        fill: "#FFF"
+        //GUI
+        this.add.image(1000,10,"rect").setScrollFactor(0);
+        const pauseButton = this.add.image(70,1010, "pauseButton").setInteractive().setScale(0.8);
+        pauseButton.on("pointerover", ()=>{
+            this.game.canvas.style.cursor = "pointer"
         });
-        this.scoreText.setScrollFactor(0);
 
-        this.timer = 60;
-        this.timerText = this.add.text(950,20, this.timer,{
-            fontSize:"32px",
-            fontStyle: "bold",
-            fill: "#FFF"
+        pauseButton.on('pointerover', function () {
+            this.setScale(1);
+            //this.setTint(0xD0BF0f);
         });
-        this.timerText.setScrollFactor(0);
+
+        pauseButton.on('pointerout', function () {
+            this.setScale(0.8);
+            this.clearTint();     
+        });
+
+        pauseButton.on("pointerout", ()=>{
+            this.game.canvas.style.cursor = "default";
+        });
+        pauseButton.on("pointerdown", ()=>{
+            this.game.canvas.style.cursor = "default";    
+            
+            this.scene.launch("Pause",{
+                keySceneBack : this.keyScene
+            });
+            this.scene.pause("Level2");
+        });
+        pauseButton.setScrollFactor(0);
+        this.add.image(110,980,"keyEsc").setScrollFactor(0).setScale(0.8);
+
+        this.scoreText = this.add.text(35, 10, "            " + this.nCoins, {
+            fontSize: "40px",
+            fontFamily: 'arcadeClassic',
+            });
+            this.scoreText.setScrollFactor(0);
+            this.add.image(60,30,"coinGUI").setScrollFactor(0).setScale(0.3);
+    
+            this.timer = 60;
+            this.timerText = this.add.text(900,10, this.timer,{
+                fontSize:"45px",
+                fontFamily: 'arcadeClassic',
+            });
+            this.timerText.setScrollFactor(0);
+    
+            this.attempts = 5;
+            this.attemptsText = this.add.text(1800,10, this.attempts,{
+                fontSize:"45px",
+                fontFamily: 'arcadeClassic',
+            });
+            this.attemptsText.setScrollFactor(0);
+            this.add.image(1750,30,"heart").setScrollFactor(0).setScale(1.5);
 
         this.time.addEvent({
             delay: 1000,
@@ -613,11 +654,11 @@ export default class Level2 extends Phaser.Scene{
         this.loseAttemp();
         }
 
-        //this.movePerson();
-        if(this.keyP.isDown){   
-            
-            this.scene.pause("Level1");
-            this.scene.launch("Pause");
+        if(this.keyEsc.isDown){    
+            this.scene.pause("Level2");
+            this.scene.launch("Pause",{
+                keySceneBack : this.keyScene
+            });
         }
 
         if(this.cursors.up.isDown){
@@ -655,6 +696,7 @@ export default class Level2 extends Phaser.Scene{
 
     collectCoin(player, coin){
         this.nCoins+=10;
+        this.newScore+=10;
         this.scoreText.setText("Score: " + this.nCoins);
         coin.disableBody(true, true);
     }
@@ -672,10 +714,11 @@ export default class Level2 extends Phaser.Scene{
     }
 
     isWin(){
-        this.scene.start("LevelWin2",{
+        this.scene.start("LevelWin",{
             nCoins : this.nCoins,
             timer : this.timer,
-            attempts : this.attempts
+            newScore : this.newScore,
+            keySceneBack : this.keyScene
         });
     }
 

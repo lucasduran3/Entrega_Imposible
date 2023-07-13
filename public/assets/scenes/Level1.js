@@ -12,12 +12,16 @@ export default class Level1 extends Phaser.Scene{
     spawnPointCar;
     count;
     timedEvent;
+    keyScene;
+    newScore;
     init(){
         this.count = 650;
         this.timerAceleration = 5;
     }
 
     create(){
+        this.keyScene = "Level1";
+        this.newScore = 0;
         console.log(window.innerWidth);
         console.log(window.innerHeight);
         this.anims.create({
@@ -232,7 +236,7 @@ export default class Level1 extends Phaser.Scene{
             loop: -1,
         });
 
-
+        var c = 0;
         this.coins = this.physics.add.group();
         objectsLayer.objects.forEach((objData) => {
          const { x = 0, y = 0, name } = objData;
@@ -240,10 +244,12 @@ export default class Level1 extends Phaser.Scene{
             case "coin": {
 
           const coin = this.coins.create(x, y, "coin").setScale(0.3).anims.play("spin", true);
+          c++;
           break;
         }
       }
     });
+    console.log(c);
 
         this.drinks = this.physics.add.group();
         objectsLayer.objects.forEach((objData)=>{
@@ -383,10 +389,6 @@ export default class Level1 extends Phaser.Scene{
         
         //G.U.I
         this.add.image(1000,10,"rect").setScrollFactor(0);
-
-        //this.add.image(70,1010,"pauseButton").setScrollFactor(0).setScale(0.8);
-        
-
         const pauseButton = this.add.image(70,1010, "pauseButton").setInteractive().setScale(0.8);
         pauseButton.on("pointerover", ()=>{
             this.game.canvas.style.cursor = "pointer"
@@ -408,7 +410,9 @@ export default class Level1 extends Phaser.Scene{
 
         pauseButton.on("pointerdown", ()=>{
             this.game.canvas.style.cursor = "default";    
-            this.scene.launch("Pause");
+            this.scene.launch("Pause",{
+                keySceneBack : this.keyScene
+            });
             this.scene.pause("Level1");
         });
         pauseButton.setScrollFactor(0);
@@ -500,7 +504,9 @@ export default class Level1 extends Phaser.Scene{
         //this.movePerson();
         if(this.keyEsc.isDown){     
             this.scene.pause("Level1");
-            this.scene.launch("Pause");
+            this.scene.launch("Pause",{
+                keySceneBack : this.keyScene
+            });
         }
 
         if(this.cursors.up.isDown){
@@ -552,6 +558,7 @@ export default class Level1 extends Phaser.Scene{
 
     collectCoin(player, coin){
         this.nCoins+=10;
+        this.newScore+=10;
         this.scoreText.setText("            " + this.nCoins);
         coin.disableBody(true, true);
     }
@@ -572,7 +579,8 @@ export default class Level1 extends Phaser.Scene{
         this.scene.start("LevelWin",{
             nCoins : this.nCoins,
             timer : this.timer,
-            attempts : this.attempts
+            newScore : this.newScore,
+            keySceneBack : this.keyScene
         });
     }
 

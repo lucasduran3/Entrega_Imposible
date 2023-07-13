@@ -34,8 +34,8 @@
             "scale": 0.25,
             "selectedLayer": 9,
             "viewCenter": {
-                "x": 1026,
-                "y": 5120
+                "x": 1022,
+                "y": 3004
             }
         },
         "level1.json#bush": {
@@ -114,11 +114,11 @@
             "expandedObjectLayers": [
                 10
             ],
-            "scale": 0.33,
+            "scale": 0.125,
             "selectedLayer": 10,
             "viewCenter": {
-                "x": 1422.7272727272727,
-                "y": 4981.818181818182
+                "x": 780,
+                "y": 3568
             }
         },
         "level2.json#bush": {
@@ -268,17 +268,17 @@
     "project": "",
     "property.type": "bool",
     "recentFiles": [
+        "level2.json",
         "level1.json",
         "menu.json",
         "level4.json",
-        "level3.json",
-        "level2.json"
+        "level3.json"
     ],
     "resizeMap.removeObjects": true,
     "tileset.embedInMap": true,
     "tileset.tileSize": {
         "height": 32,
-        "width": 38
+        "width": 32
     },
     "tileset.type": 0
 }

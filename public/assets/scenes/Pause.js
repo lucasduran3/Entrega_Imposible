@@ -3,7 +3,13 @@ export default class Pause extends Phaser.Scene{
         super("Pause");  
     }
     text;
+    keySceneBack;
+    keyScene;
+    init(data){
+        this.sceneBack = data.keySceneBack;
+    }
     create(){
+        this.keyScene = "Pause";
         this.text = this.add.text(900, 150, "Pause",{
             fontSize: "60px",
             fontStyle: "bold",
@@ -23,7 +29,6 @@ export default class Pause extends Phaser.Scene{
 
         playButton.on('pointerover', function () {
             this.setScale(1.105);
-            //this.setTint(0xD0BF0f);
         });
 
         playButton.on('pointerout', function () {
@@ -37,7 +42,7 @@ export default class Pause extends Phaser.Scene{
 
         playButton.on("pointerdown", ()=>{
             this.game.canvas.style.cursor = "default";    
-            this.scene.resume("Level1");
+            this.scene.resume(this.sceneBack);
             this.scene.stop("Pause");
         });
 
@@ -70,8 +75,9 @@ export default class Pause extends Phaser.Scene{
 
     update(){
         if(this.keyEsc.isDown){   
-            this.scene.resume("Level1");
-            this.scene.stop("Pause");
+            //this.scene.resume("Level1");
+            this.scene.resume(this.sceneBack);     
+            this.scene.stop("Pause");   
         }
     }
 }
