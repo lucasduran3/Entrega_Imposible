@@ -144,7 +144,7 @@ export default class Level2 extends Phaser.Scene{
             (obj) => obj.name === "player"
           );
           this.player = this.physics.add.sprite(this.spawnPointPlayer.x, this.spawnPointPlayer.y, "player");
-          this.player.setCollideWorldBounds(true).setCircle(50,-10,45);
+          this.player.setCollideWorldBounds(true).setCircle(40,0,47);
         
         spawnPoint = this.map.findObject(
             "objects",

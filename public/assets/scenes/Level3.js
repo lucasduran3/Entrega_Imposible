@@ -99,8 +99,7 @@ export default class Level3 extends Phaser.Scene{
         const build4L = this.map.addTilesetImage("build4","build4");
         const build5L = this.map.addTilesetImage("build5","build5");
         const build6L = this.map.addTilesetImage("build6","build6");
-
-        
+    
         const streetLayer = this.map.createLayer("street", streetL,0,0);   
         const floorLayer = this.map.createLayer("floor", floorL,0,0);
         const sideWalkLayer = this.map.createLayer("sidewalk", sideL,0,0);      
@@ -128,7 +127,7 @@ export default class Level3 extends Phaser.Scene{
           );
           this.player = this.physics.add.sprite(this.spawnPointPlayer.x, this.spawnPointPlayer.y, "player");
           this.player.setCollideWorldBounds(true);
-          this.player.setCircle(50,-10,45);
+          this.player.setCircle(40,0,47);
         
         spawnPoint = this.map.findObject(
             "objects",
@@ -530,7 +529,6 @@ export default class Level3 extends Phaser.Scene{
 
         pauseButton.on('pointerover', function () {
             this.setScale(1);
-            //this.setTint(0xD0BF0f);
         });
 
         pauseButton.on('pointerout', function () {

@@ -12,6 +12,8 @@ export default class Level4 extends Phaser.Scene{
     spawnPointCar;
     count;
     timedEvent;
+    keyScene;
+    newScore;
     init(data){
         this.count = 650;
         this.timerAceleration = 5;
@@ -19,6 +21,8 @@ export default class Level4 extends Phaser.Scene{
     }
 
     create(){
+        this.newScore = 0;
+        this.keyScene = "Level4";
         this.anims.create({
             key: "ride",
             frames: this.anims.generateFrameNumbers("player", { start: 1, end: 2 }),
@@ -46,7 +50,7 @@ export default class Level4 extends Phaser.Scene{
             repeat: -1,
         });
 
-        /*this.anims.create({
+        this.anims.create({
             key: "walk3",
             frames:this.anims.generateFrameNumbers("person3",{start:0, end:3}),
             frameRate: 4,
@@ -66,13 +70,6 @@ export default class Level4 extends Phaser.Scene{
             frameRate: 4,
             repeat: -1
         });
-
-        this.anims.create({
-            key: "walkDog",
-            frames:this.anims.generateFrameNumbers("dog",{start: 0, end:3}),
-            frameRate:4,
-            repeat:-1
-        });*/
 
         this.anims.create({
             key:"spin",
@@ -107,12 +104,44 @@ export default class Level4 extends Phaser.Scene{
 
         //LOAD AND CREATE LAYER
         const streetL = this.map.addTilesetImage("street", "street");
+        const sideL = this.map.addTilesetImage("sidewalk", "sidewalk");
+        const cornerL = this.map.addTilesetImage("corner", "corner");
         const floorL = this.map.addTilesetImage("floor", "floor");
-        const groundL = this.map.addTilesetImage("ground","ground");
+        const groundL = this.map.addTilesetImage("ground", "ground");
+        const bushL = this.map.addTilesetImage("bush", "bush");
+        const treeL = this.map.addTilesetImage("tree", "tree");
+        const tree2L = this.map.addTilesetImage("tree2", "tree2");
+        const buildL = this.map.addTilesetImage("build","build");
+        const build2L  = this.map.addTilesetImage("build2", "build2");
+        const build3L = this.map.addTilesetImage("build3", "build3");
+        const build4L = this.map.addTilesetImage("build4","build4");
+        const build5L = this.map.addTilesetImage("build5","build5");
+        const build6L = this.map.addTilesetImage("build6","build6");
+        const houseL = this.map.addTilesetImage("house","house");
+        const house2L = this.map.addTilesetImage("house2","house2");
+        const house3L = this.map.addTilesetImage("house3","house3");
+        const house4L = this.map.addTilesetImage("house4","house4");
+        const crosswalkL = this.map.addTilesetImage("crosswalk","crosswalk");
         
         const streetLayer = this.map.createLayer("street", streetL,0,0);   
-        const floorLayer = this.map.createLayer("floor", floorL,0,0);  
+        const floorLayer = this.map.createLayer("floor", floorL,0,0);
         const groundLayer = this.map.createLayer("ground", groundL,0,0);
+        const bushLayer = this.map.createLayer("bush", bushL,0,0);
+        const treeLayer = this.map.createLayer("tree", treeL,0,0);
+        const treeLayer2 = this.map.createLayer("tree2", tree2L,0,0);
+        const sideWalkLayer = this.map.createLayer("sidewalk", sideL,0,0);      
+        const cornerLayer = this.map.createLayer("corner", cornerL,0,0);           
+        const buildLayer3 = this.map.createLayer("build3", build3L,0,0);
+        const buildLayer6 = this.map.createLayer("build6", build6L,0,0);
+        const buildLayer5 = this.map.createLayer("build5", build5L,0,0);  
+        const buildLayer4 = this.map.createLayer("build4", build4L,0,0);
+        const buildLayer2 = this.map.createLayer("build2", build2L,0,0);
+        const buildLayer = this.map.createLayer("build", buildL,0,0);
+        const houseLayer = this.map.createLayer("house", houseL,0,0);
+        const houseLayer2 = this.map.createLayer("house2", house2L,0,0);
+        const houseLayer3 = this.map.createLayer("house3", house3L,0,0);
+        const houseLayer4 = this.map.createLayer("house4", house4L,0,0);
+        const crosswalkLayer = this.map.createLayer("crosswalk", crosswalkL,0,0);
 
         //CREATE OBJECTS
         const objectsLayer = this.map.getObjectLayer("objects");
@@ -128,18 +157,18 @@ export default class Level4 extends Phaser.Scene{
             (obj) => obj.name === "player"
           );
           this.player = this.physics.add.sprite(this.spawnPointPlayer.x, this.spawnPointPlayer.y, "player");
-          this.player.setCollideWorldBounds(true);
+          this.player.setCollideWorldBounds(true).setCircle(40,0,47);
         
-        /*spawnPoint = this.map.findObject(
+        spawnPoint = this.map.findObject(
             "objects",
             (obj) => obj.name === "person"
         );
-        this.person = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, "person");
+        this.person = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, "person").setFlipX(90);
         this.person.setCollideWorldBounds(true);
        
         this.tweens.add({
             targets: this.person,
-            x: 2049,
+            x: 1184,
             flipX: true,
             yoyo: true,
             duration: 5000,
@@ -163,17 +192,17 @@ export default class Level4 extends Phaser.Scene{
             repeat: -1
         });
 
-        /*let spawnPoint2 = this.map.findObject(
+        let spawnPoint2 = this.map.findObject(
             "objects",
             (obj) => obj.name === "person3"
         );
 
-        this.person3 = this.physics.add.sprite(spawnPoint2.x, spawnPoint2.y, "person3").setFlipX(90);
+        this.person3 = this.physics.add.sprite(spawnPoint2.x, spawnPoint2.y, "person3");
         this.person3.setCollideWorldBounds(true);
 
         this.tweens.add({
             targets: this.person3,
-            x: 1200,
+            x: 2024,
             flipX: true,
             yoyo: true,
             duration: 5000,
@@ -186,11 +215,11 @@ export default class Level4 extends Phaser.Scene{
         );
 
         this.person4 = this.physics.add.sprite(spawnPoint2.x, spawnPoint2.y, "person4");
-        this.person4.setCollideWorldBounds(true);
+        this.person4.setCollideWorldBounds(true).setFlipX(90);
 
         this.tweens.add({
             targets: this.person4,
-            x: 2035,
+            x: 1184,
             flipX: true,
             yoyo: true,
             duration: 10000,
@@ -210,22 +239,9 @@ export default class Level4 extends Phaser.Scene{
             x: 2035,
             flipX: true,
             yoyo: true,
-            duration: 3000,
+            duration: 4000,
             repeat: -1
         });
-
-        let spawnPoint3 = this.map.findObject(
-            "objects",
-            (obj) => obj.name === "dog"
-        );
-
-        this.dog = this.physics.add.sprite(spawnPoint3.x, spawnPoint3.y, "dog");
-        this.dog.setCollideWorldBounds(true);
-
-        spawnPoint3 = this.map.findObject(
-            "objects",
-            (obj) => obj.name === "dog2"
-        );*/
         
         spawnPoint = this.map.findObject(
             "objects",
@@ -463,7 +479,7 @@ export default class Level4 extends Phaser.Scene{
       }
     });
 
-       /* this.drinks = this.physics.add.group();
+       this.drinks = this.physics.add.group();
         objectsLayer.objects.forEach((objData)=>{
            const {x = 0, y = 0, name} = objData;
            switch(name){
@@ -483,10 +499,21 @@ export default class Level4 extends Phaser.Scene{
                 break;
             }
            }
-        });*/
+        });
+
+        this.holes = this.physics.add.group();
+        objectsLayer.objects.forEach((objData)=>{
+           const {x = 0, y = 0, name} = objData;
+           switch(name){
+            case "hole" : {
+                const hole = this.holes.create(x,y,"hole");
+                break;
+            }
+           }
+        });
 
           this.cursors = this.input.keyboard.createCursorKeys();  
-          this.keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+          this.keyEsc = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
           this.cameras.main.startFollow(this.player);
           this.physics.world.setBounds(0,0, this.map.widthInPixels, this.map.heightInPixels);
@@ -653,24 +680,69 @@ export default class Level4 extends Phaser.Scene{
             this
         );
 
+        this.physics.add.overlap(
+            this.player,
+            this.holes,
+            this.loseAttemp,
+            null, 
+            this
+        );
+
         
         floorLayer.setCollisionByProperty({ colision: true });
         this.physics.add.collider(floorLayer, this.player);   
         
-        this.scoreText = this.add.text(20, 20, "Score:" + this.nCoins, {
-        fontSize: "32px",
-        fontStyle: "bold",
-        fill: "#FFF"
+        //GUI
+        this.add.image(1000,10,"rect").setScrollFactor(0);
+        const pauseButton = this.add.image(70,1010, "pauseButton").setInteractive().setScale(0.8);
+        pauseButton.on("pointerover", ()=>{
+            this.game.canvas.style.cursor = "pointer"
+        });
+
+        pauseButton.on('pointerover', function () {
+            this.setScale(1);
+        });
+
+        pauseButton.on('pointerout', function () {
+            this.setScale(0.8);
+            this.clearTint();     
+        });
+
+        pauseButton.on("pointerout", ()=>{
+            this.game.canvas.style.cursor = "default";
+        });
+
+        pauseButton.on("pointerdown", ()=>{
+            this.game.canvas.style.cursor = "default";    
+            this.scene.launch("Pause",{
+                keySceneBack : this.keyScene
+            });
+            this.scene.pause("Level4");
+        });
+        pauseButton.setScrollFactor(0);
+        this.add.image(110,980,"keyEsc").setScrollFactor(0).setScale(0.8);
+
+        this.scoreText = this.add.text(35, 10, "            " + this.nCoins, {
+        fontSize: "40px",
+        fontFamily: 'arcadeClassic',
         });
         this.scoreText.setScrollFactor(0);
+        this.add.image(60,30,"coinGUI").setScrollFactor(0).setScale(0.3);
 
         this.timer = 60;
-        this.timerText = this.add.text(950,20, this.timer,{
-            fontSize:"32px",
-            fontStyle: "bold",
-            fill: "#FFF"
+        this.timerText = this.add.text(900,10, this.timer,{
+            fontSize:"45px",
+            fontFamily: 'arcadeClassic',
         });
         this.timerText.setScrollFactor(0);
+
+        this.attempts = 5;
+        this.attemptsText = this.add.text(1800,10, this.attempts,{
+            fontSize:"45px",
+            fontFamily: 'arcadeClassic',
+        });
+        this.attemptsText.setScrollFactor(0);
+        this.add.image(1750,30,"heart").setScrollFactor(0).setScale(1.5);
 
         this.time.addEvent({
             delay: 1000,
@@ -685,21 +757,21 @@ export default class Level4 extends Phaser.Scene{
     }
 
     update(){
-        /*this.person.anims.play("walk", true);
+        this.person.anims.play("walk", true);
         this.person2.anims.play("walk2", true);
         this.person3.anims.play("walk3", true);
         this.person4.anims.play("walk4", true);
-        this.person5.anims.play("walk5", true);*/
+        this.person5.anims.play("walk5", true);
         this.check.anims.play("spinCheck", true);
-        //this.exampleFunction();
         if(this.timer===0){
         this.loseAttemp();
         }
-        //this.movePerson();
-        if(this.keyP.isDown){   
+        if(this.keyEsc.isDown){   
             
-            this.scene.pause("Level3");
-            this.scene.launch("Pause");
+            this.scene.pause("Level4");
+            this.scene.launch("Pause",{
+                keySceneBack : this.keyScene
+            });
         }
 
         if(this.cursors.up.isDown){
@@ -736,6 +808,7 @@ export default class Level4 extends Phaser.Scene{
     }
 
     collectCoin(player, coin){
+        this.newScore+=10;
         this.nCoins+=10;
         this.scoreText.setText("Score: " + this.nCoins);
         coin.disableBody(true, true);
@@ -753,10 +826,10 @@ export default class Level4 extends Phaser.Scene{
     }
 
     isWin(){
-        this.scene.start("LevelWin4",{
+        this.scene.start("LevelWin",{
             nCoins : this.nCoins,
             timer : this.timer,
-            attempts : this.attempts
+            newScore : this.newScore,
         });
     }
 

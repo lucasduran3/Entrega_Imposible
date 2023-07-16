@@ -34,8 +34,8 @@
             "scale": 0.25,
             "selectedLayer": 9,
             "viewCenter": {
-                "x": 1022,
-                "y": 3004
+                "x": -2046,
+                "y": -1416
             }
         },
         "level1.json#bush": {
@@ -117,8 +117,8 @@
             "scale": 0.125,
             "selectedLayer": 10,
             "viewCenter": {
-                "x": 780,
-                "y": 3568
+                "x": 772,
+                "y": 3552
             }
         },
         "level2.json#bush": {
@@ -162,11 +162,11 @@
             "expandedObjectLayers": [
                 14
             ],
-            "scale": 0.25,
-            "selectedLayer": 12,
+            "scale": 0.33,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 1426,
-                "y": 2520
+                "x": 1687.8787878787878,
+                "y": 2196.969696969697
             }
         },
         "level3.json#build": {
@@ -213,21 +213,74 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 0.125,
-            "selectedLayer": 1,
+            "scale": 0.25,
+            "selectedLayer": 20,
             "viewCenter": {
-                "x": 452,
-                "y": 5096
+                "x": 1656,
+                "y": 2380
             }
+        },
+        "level4.json#build": {
+            "scaleInDock": 0.25
+        },
+        "level4.json#build2": {
+            "scaleInDock": 0.33
+        },
+        "level4.json#build3": {
+            "scaleInDock": 0.25
+        },
+        "level4.json#build4": {
+            "scaleInDock": 0.33
+        },
+        "level4.json#build5": {
+            "scaleInDock": 0.5
+        },
+        "level4.json#build6": {
+            "scaleInDock": 0.5
+        },
+        "level4.json#bush": {
+            "scaleInDock": 1
+        },
+        "level4.json#corner": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "level4.json#crosswalk": {
+            "scaleInDock": 1
         },
         "level4.json#floor": {
             "scaleInDock": 1
         },
         "level4.json#ground": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "level4.json#ground2": {
+            "scaleInDock": 1
+        },
+        "level4.json#house1": {
+            "scaleInDock": 0.33
+        },
+        "level4.json#house2": {
+            "scaleInDock": 0.5
+        },
+        "level4.json#house3": {
+            "scaleInDock": 0.33
+        },
+        "level4.json#house4": {
+            "scaleInDock": 0.33
+        },
+        "level4.json#sidewalk": {
             "scaleInDock": 1
         },
         "level4.json#street": {
             "scaleInDock": 0.33
+        },
+        "level4.json#tree": {
+            "scaleInDock": 1
+        },
+        "level4.json#tree2": {
+            "scaleInDock": 1
         },
         "menu.json": {
             "scale": 0.25,
@@ -267,22 +320,23 @@
     "map.lastUsedFormat": "json",
     "map.width": 60,
     "openFiles": [
+        "level4.json",
         "level3.json"
     ],
     "project": "",
     "property.type": "bool",
     "recentFiles": [
+        "level4.json",
         "level3.json",
         "level2.json",
         "level1.json",
-        "menu.json",
-        "level4.json"
+        "menu.json"
     ],
     "resizeMap.removeObjects": true,
     "tileset.embedInMap": true,
     "tileset.tileSize": {
-        "height": 32,
-        "width": 32
+        "height": 33,
+        "width": 35
     },
     "tileset.type": 0
 }

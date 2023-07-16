@@ -105,8 +105,33 @@ export default class Preload extends Phaser.Scene{
         this.load.image("retryButton", "./public/assets/images/retryButton.png");
         this.load.image("dislike", "./public/assets/images/dislike.png")
         
+
+        this.load.on("progress", function (value){
+            console.log(value);
+        });
+
+        this.load.on("fileprogress", function (file){
+            console.log(file.src);
+        });
+
+        this.load.on("complete", function (){
+            console.log("complete");
+            progressBar.destroy();
+            progressBox.destroy();         
+        });
+
+        let progressBar = this.add.graphics();
+        let progressBox = this.add.graphics();
+        progressBox.fillStyle (0x222222, 0.8);
+
+        this.load.on('progress', function(value){
+            progressBar.clear();
+            progressBar.fillStyle(0x0ff00,1);
+            progressBar.fillRect(720,540,500 * value,30);
+        });
+
     }
     create(){
-        this.scene.start("Menu");
+        this.scene.start("Level1");
     }
 }
