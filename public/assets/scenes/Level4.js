@@ -805,6 +805,10 @@ export default class Level4 extends Phaser.Scene{
             this.scene.start("GameOver");
         }
 
+        if(this.nCoins === 1350){
+            this.attempts++;
+        }
+
     }
 
     collectCoin(player, coin){

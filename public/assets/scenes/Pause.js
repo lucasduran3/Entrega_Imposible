@@ -9,6 +9,7 @@ export default class Pause extends Phaser.Scene{
         this.sceneBack = data.keySceneBack;
     }
     create(){
+        this.add.image(960,540,"bgBlack").setScrollFactor(0);
         this.keyScene = "Pause";
         this.text = this.add.text(900, 150, "Pause",{
             fontSize: "60px",

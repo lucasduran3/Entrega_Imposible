@@ -7,6 +7,7 @@ export default class Help extends Phaser.Scene{
         this.sceneBack = data.keySceneBack;
     }
     create(){
+        this.add.image(960,540,"bgBlack").setScrollFactor(0);
         this.add.image(320,700,"bar");
 
         const backButton = this.add.image(320,900, "backButton").setInteractive().setScale(0.7);

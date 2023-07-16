@@ -73,6 +73,8 @@ export default class Preload extends Phaser.Scene{
         this.load.image("coinGUI", "./public/assets/images/coinGUI.png");
         this.load.image("heart", "./public/assets/images/heart.png")
         this.load.image("pauseButton", "./public/assets/images/pauseButton.png");
+        this.load.image("bgBlack", "./public/assets/images/bgBlack.png");
+
 
         //HELP
         this.load.image("phonePause", "./public/assets/images/phonePause.png");

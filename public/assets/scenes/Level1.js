@@ -19,7 +19,7 @@ export default class Level1 extends Phaser.Scene{
         this.timerAceleration = 5;
     }
 
-    create(){
+    create(){      
         this.keyScene = "Level1";
         this.newScore = 0;
         console.log(window.innerWidth);
@@ -79,8 +79,6 @@ export default class Level1 extends Phaser.Scene{
             repeat:-1
 
         });
-
-        
 
         this.map = this.make.tilemap({key : "map"});
 
@@ -395,7 +393,6 @@ export default class Level1 extends Phaser.Scene{
 
         pauseButton.on('pointerover', function () {
             this.setScale(1);
-            //this.setTint(0xD0BF0f);
         });
 
         pauseButton.on('pointerout', function () {
@@ -446,10 +443,7 @@ export default class Level1 extends Phaser.Scene{
             callbackScope: this,
             loop: true
         });
-
-
-        
-        
+   
         //TUTORIAL
         this.keyUp = this.physics.add.sprite(1500,700,"keyUp");
         this.keyUp.setScrollFactor(0);
@@ -488,6 +482,7 @@ export default class Level1 extends Phaser.Scene{
             repeat: -1
         });
         console.log(this.keyUp.visible);
+        
     }
 
     update(){
@@ -500,7 +495,6 @@ export default class Level1 extends Phaser.Scene{
         this.loseAttemp();
         }
 
-        //this.movePerson();
         if(this.keyEsc.isDown){     
             this.scene.pause("Level1");
             this.scene.launch("Pause",{
