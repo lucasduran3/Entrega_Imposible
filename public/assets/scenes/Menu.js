@@ -13,7 +13,6 @@ export default class Menu extends Phaser.Scene{
 
         this.bar = this.physics.add.sprite(1700,675,"bar");
         this.bar = this.physics.add.sprite(1700,475,"bar");
-        //this.help = this.physics.add.sprite(1800,875,"help");
 
         const playButton = this.add.image(1700,475, "button").setInteractive();
         playButton.on("pointerover", ()=>{
@@ -23,7 +22,6 @@ export default class Menu extends Phaser.Scene{
         playButton.on('pointerover', function () {
             this.setAngle(-2);
             this.setScale(1.105);
-            //this.setTint(0xD0BF0f);
         });
 
         playButton.on('pointerout', function () {
@@ -69,12 +67,7 @@ export default class Menu extends Phaser.Scene{
             });
         });
 
-        /*this.add.text(100, 100, 'Entrega Imposible', {
-            fontFamily: 'backto1982',
-            fontSize: 140,
-            
-        });*/
-
-        this.logo = this.physics.add.sprite(700,100,"logo");
+        this.add.image(500,150,"entrega");
+        this.add.image(505,285,"imposible");
     }
 }

@@ -95,6 +95,8 @@ export default class Preload extends Phaser.Scene{
         this.load.image("sky", "./public/assets/images/sky.png");
         this.load.image("bar", "./public/assets/images/bar.png");
         this.load.image("title", "./public/assets/images/title.png");
+        this.load.image("entrega", "./public/assets/images/entrega.png");
+        this.load.image("imposible", "./public/assets/images/imposible.png");
 
         //WIN
         this.load.image("phoneWin", "./public/assets/images/phoneWin.png");
@@ -134,6 +136,6 @@ export default class Preload extends Phaser.Scene{
 
     }
     create(){
-        this.scene.start("Level1");
+        this.scene.start("Menu");
     }
 }
