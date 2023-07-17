@@ -410,6 +410,7 @@ export default class Level1 extends Phaser.Scene{
                 keySceneBack : this.keyScene
             });
             this.scene.pause("Level1");
+            this.sound.stopAll();
         });
         pauseButton.setScrollFactor(0);
         this.add.image(110,980,"keyEsc").setScrollFactor(0).setScale(0.8);
@@ -482,6 +483,16 @@ export default class Level1 extends Phaser.Scene{
             repeat: -1
         });
         console.log(this.keyUp.visible);
+
+        //AUDIO
+        this.collectcoin = this.sound.add("collectcoin2");
+        this.drinkS = this.sound.add("drinkS");
+        this.clockS = this.sound.add("clockS");
+        this.newAttempt = this.sound.add("newAttempt");
+        this.looseAtemptS = this.sound.add("looseAttemptS");
+        this.music = this.sound.add("music");
+        this.music.play();
+        this.music.setVolume(0.5);
         
     }
 
@@ -554,6 +565,7 @@ export default class Level1 extends Phaser.Scene{
         this.newScore+=10;
         this.scoreText.setText("            " + this.nCoins);
         coin.disableBody(true, true);
+        this.collectcoin.play();
     }
     
     onSecond(){
@@ -562,14 +574,16 @@ export default class Level1 extends Phaser.Scene{
     }
 
     loseAttemp(){
-            this.attempts--;
-            this.player.setPosition(this.spawnPointPlayer.x, this.spawnPointPlayer.y);
-            this.player.setAngle(0);
-            this.attemptsText.setText(this.attempts);
+        this.looseAtemptS.play();
+        this.attempts--;
+        this.attemptsText.setText(this.attempts);
+        this.player.setPosition(this.spawnPointPlayer.x, this.spawnPointPlayer.y);
+        this.player.setAngle(0);
     }
 
     isWin(){
-        this.scene.start("LevelWin",{
+        this.scene.pause("Level1");
+        this.scene.launch("LevelWin",{
             nCoins : this.nCoins,
             timer : this.timer,
             newScore : this.newScore,
@@ -582,18 +596,9 @@ export default class Level1 extends Phaser.Scene{
     }
 
     playerAceleration(player,drink){
+    this.drinkS.play();
     drink.disableBody(true,true);
      this.count=1300;
-     this.tweens.add({
-        targets: this.player.anims,
-        timeScale: { from: 0.5, to: 2 },
-        ease: 'Sine.inOut',
-        yoyo: true,
-        repeat: 1,
-        repeatDelay: 1000,
-        hold: 1000,
-        duraton: 4000
-    });
      this.timedEvent = this.time.addEvent({
         delay:5000,
         callback: this.resetVelocity,

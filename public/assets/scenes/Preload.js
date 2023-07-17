@@ -108,6 +108,18 @@ export default class Preload extends Phaser.Scene{
         this.load.image("homeButton", "./public/assets/images/homeButton.png");
         this.load.image("retryButton", "./public/assets/images/retryButton.png");
         this.load.image("dislike", "./public/assets/images/dislike.png")
+
+        //AUDIO
+        this.load.audio("music", "./public/assets/audio/music.wav");
+        this.load.audio("clockS", "./public/assets/audio/clockS.mp3");
+        this.load.audio("collectcoin", "./public/assets/audio/collectcoin.mp3");
+        this.load.audio("collectcoin2", "./public/assets/audio/collectcoin2.mp3");
+        this.load.audio("drinkS", "./public/assets/audio/drinkS.mp3");
+        this.load.audio("gameOverS", "./public/assets/audio/gameOverS.mp3");
+        this.load.audio("levelWinS", "./public/assets/audio/levelWinS.mp3");
+        this.load.audio("newAttempt", "./public/assets/audio/newAttempt.mp3");
+        this.load.audio("looseAttemptS", "./public/assets/audio/looseAttemptS.wav");
+        
         
 
         this.load.on("progress", function (value){
@@ -137,5 +149,9 @@ export default class Preload extends Phaser.Scene{
     }
     create(){
         this.scene.start("Menu");
+        /*this.music = this.sound.add("music");
+        this.music.play();
+        this.music.setLoop(true);*/
+
     }
 }

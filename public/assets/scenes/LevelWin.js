@@ -20,6 +20,7 @@ export default class LevelWin extends Phaser.Scene{
     }
     
     create(){
+        this.add.image(960,540,"bgBlack").setScrollFactor(0);
         this.firstScore = this.nCoins;
         this.add.image(1920/2,1080/2,"phoneWin").setScrollFactor(0);
         if(this.newScore >= 450 && this.timer>20){
@@ -65,14 +66,26 @@ export default class LevelWin extends Phaser.Scene{
         playButton.on("pointerdown", ()=>{
             this.game.canvas.style.cursor = "default";
             if(this.sceneBack == "Level1"){
-                this.scene.start("Level2");
+                this.scene.start("Level2",{
+                    nCoins : this.nCoins
+                });
             }else if(this.sceneBack == "Level2"){
-                this.scene.start("Level3");
+                this.scene.start("Level3",{
+                    nCoins : this.nCoins
+                });
             }else if(this.sceneBack == "Level3"){
-                this.scene.start("Level4");
+                this.scene.start("Level4",{
+                    nCoins : this.nCoins
+                });
             } else if(this.sceneBack == "Level4"){
-                this.scene.start("GameWin");
+                this.scene.start("GameWin",{
+                    nCoins : this.nCoins
+                });
             }
         });
+
+        this.sound.stopAll();
+        this.levelWinS = this.sound.add("levelWinS");
+        this.levelWinS.play();
     }
 }

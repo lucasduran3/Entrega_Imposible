@@ -4,6 +4,7 @@ export default class Menu extends Phaser.Scene{
     }
     keyScene;
     create(){
+
         this.keyScene = "Menu";
         this.sky = this.physics.add.sprite(0,0,"sky").setScale(10000);
         this.back = this.physics.add.sprite(700,680,"backMenu");
@@ -35,7 +36,8 @@ export default class Menu extends Phaser.Scene{
         });
 
         playButton.on("pointerdown", ()=>{
-            this.game.canvas.style.cursor = "default";    
+            this.game.canvas.style.cursor = "default";  
+            this.music.stop();
             this.scene.start("Level1");
         });
 
@@ -61,7 +63,8 @@ export default class Menu extends Phaser.Scene{
         });
 
         helpButton.on("pointerdown", ()=>{
-            this.game.canvas.style.cursor = "default";    
+            this.game.canvas.style.cursor = "default";
+            this.music.stop();   
             this.scene.launch("Help",{
                 keySceneBack : this.keyScene
             });
@@ -69,5 +72,9 @@ export default class Menu extends Phaser.Scene{
 
         this.add.image(500,150,"entrega");
         this.add.image(505,285,"imposible");
+
+        this.music = this.sound.add("music");
+        this.music.play();
+        this.music.setVolume(0.5);
     }
 }

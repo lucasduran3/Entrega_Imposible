@@ -4704,6 +4704,18 @@
                  "width":0,
                  "x":1428,
                  "y":2528
+                }, 
+                {
+                 "height":0,
+                 "id":95,
+                 "name":"drink",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1560.60606060606,
+                 "y":7142.42424242424
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -4712,7 +4724,7 @@
          "y":0
         }],
  "nextlayerid":18,
- "nextobjectid":95,
+ "nextobjectid":96,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.1",

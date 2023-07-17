@@ -4,6 +4,9 @@ export default class GameOver extends Phaser.Scene{
     }
 
     create(){
+        this.add.image(960,540,"bgBlack").setScrollFactor(0);
+    this.gameOverS = this.sound.add("gameOverS");
+    this.gameOverS.play();
     this.add.image(1920/2,1080/2,"phoneOver").setScrollFactor(0);   
     this.add.image(950,550, "dislike");
 
@@ -52,5 +55,8 @@ export default class GameOver extends Phaser.Scene{
         this.scene.start("Level1");
     });
 
+    this.sound.stopAll();
+        this.gameOverS = this.sound.add("gameOverS");
+        this.gameOverS.play();
     }
 }

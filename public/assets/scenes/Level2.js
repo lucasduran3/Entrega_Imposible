@@ -92,6 +92,13 @@ export default class Level2 extends Phaser.Scene{
         });
 
         this.anims.create({
+            key:"spinClock",
+            frames:this.anims.generateFrameNumbers("clock",{start:0, end:5}),
+            frameRate:10,
+            repeat:-1
+        });  
+
+        this.anims.create({
             key:"spinCheck",
             frames:this.anims.generateFrameNumbers("check",{start:0, end:6}),
             frameRate:10,
@@ -361,7 +368,7 @@ export default class Level2 extends Phaser.Scene{
            const {x = 0, y = 0, name} = objData;
            switch(name){
             case "clock" : {
-                const clock = this.clocks.create(x,y,"clock").setScale(0.02);
+                const clock = this.clocks.create(x,y,"clock").anims.play("spinClock", true);
                 break;
             }
            }
@@ -622,7 +629,16 @@ export default class Level2 extends Phaser.Scene{
         });
 
         this.attempts = 5;
-        console.log(this.dog);
+
+        //AUDIO
+        this.collectcoin = this.sound.add("collectcoin2");
+        this.drinkS = this.sound.add("drinkS");
+        this.clockS = this.sound.add("clockS");
+        this.newAttempt = this.sound.add("newAttempt");
+        this.looseAtemptS = this.sound.add("looseAttemptS");
+        this.music = this.sound.add("music");
+        this.music.play();
+        this.music.setVolume(0.5);
     }
 
     update(){
@@ -694,14 +710,16 @@ export default class Level2 extends Phaser.Scene{
 
         if(this.nCoins === 1350){
             this.attempts++;
+            this.attemptsText.setText(this.attempts);
         }
 
     }
 
     collectCoin(player, coin){
+        this.collectcoin.play();
         this.nCoins+=10;
         this.newScore+=10;
-        this.scoreText.setText("Score: " + this.nCoins);
+        this.scoreText.setText("            " + this.nCoins);
         coin.disableBody(true, true);
     }
     
@@ -711,14 +729,17 @@ export default class Level2 extends Phaser.Scene{
     }
 
     loseAttemp(){
+        this.looseAtemptS.play();
             this.attempts--;
+            this.attemptsText.setText(this.attempts);
             this.player.setPosition(this.spawnPointPlayer.x, this.spawnPointPlayer.y);
             this.dog.setPosition(1200, 6500);
             this.player.setAngle(0);
     }
 
     isWin(){
-        this.scene.start("LevelWin",{
+        this.scene.pause("Level2");
+        this.scene.launch("LevelWin",{
             nCoins : this.nCoins,
             timer : this.timer,
             newScore : this.newScore,
@@ -731,18 +752,9 @@ export default class Level2 extends Phaser.Scene{
     }
 
     playerAceleration(player,drink){
+    this.drinkS.play();
     drink.disableBody(true,true);
      this.count=1300;
-     this.tweens.add({
-        targets: this.player.anims,
-        timeScale: { from: 0.5, to: 2 },
-        ease: 'Sine.inOut',
-        yoyo: true,
-        repeat: 1,
-        repeatDelay: 1000,
-        hold: 1000,
-        duraton: 4000
-    });
      this.timedEvent = this.time.addEvent({
         delay:5000,
         callback: this.resetVelocity,
@@ -752,6 +764,7 @@ export default class Level2 extends Phaser.Scene{
     }
 
     timeIncrement(player, clock){
+        this.clockS.play();
         this.timer+=5;
         clock.disableBody(true,true);
     }
