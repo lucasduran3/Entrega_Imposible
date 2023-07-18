@@ -4,7 +4,6 @@ export default class Menu extends Phaser.Scene{
     }
     keyScene;
     create(){
-
         this.keyScene = "Menu";
         this.sky = this.physics.add.sprite(0,0,"sky").setScale(10000);
         this.back = this.physics.add.sprite(700,680,"backMenu");
@@ -75,6 +74,7 @@ export default class Menu extends Phaser.Scene{
 
         this.music = this.sound.add("music");
         this.music.play();
+        this.music.setLoop(true);
         this.music.setVolume(0.5);
     }
 }

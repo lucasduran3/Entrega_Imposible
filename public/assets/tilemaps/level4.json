@@ -8320,8 +8320,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":68,
-                 "y":6912
+                 "x":76,
+                 "y":6852
                 }, 
                 {
                  "height":0,
@@ -8393,7 +8393,7 @@
                  "visible":true,
                  "width":0,
                  "x":3080,
-                 "y":5024
+                 "y":4952
                 }, 
                 {
                  "height":0,
@@ -9931,6 +9931,30 @@
                  "width":0,
                  "x":1664,
                  "y":2388
+                }, 
+                {
+                 "height":0,
+                 "id":158,
+                 "name":"drink",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1472,
+                 "y":6996
+                }, 
+                {
+                 "height":0,
+                 "id":159,
+                 "name":"drink",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1452,
+                 "y":5740
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -9939,7 +9963,7 @@
          "y":0
         }],
  "nextlayerid":26,
- "nextobjectid":158,
+ "nextobjectid":160,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.1",

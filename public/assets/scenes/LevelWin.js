@@ -66,18 +66,22 @@ export default class LevelWin extends Phaser.Scene{
         playButton.on("pointerdown", ()=>{
             this.game.canvas.style.cursor = "default";
             if(this.sceneBack == "Level1"){
+                this.scene.stop("Level1");
                 this.scene.start("Level2",{
                     nCoins : this.nCoins
                 });
             }else if(this.sceneBack == "Level2"){
+                this.scene.stop("Level2");
                 this.scene.start("Level3",{
                     nCoins : this.nCoins
                 });
             }else if(this.sceneBack == "Level3"){
+                this.scene.stop("Level3");
                 this.scene.start("Level4",{
                     nCoins : this.nCoins
                 });
             } else if(this.sceneBack == "Level4"){
+                this.scene.stop("Level4");
                 this.scene.start("GameWin",{
                     nCoins : this.nCoins
                 });

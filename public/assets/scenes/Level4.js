@@ -15,13 +15,30 @@ export default class Level4 extends Phaser.Scene{
     keyScene;
     newScore;
     init(data){
-        this.count = 650;
-        this.timerAceleration = 5;
         this.nCoins = data.nCoins;
+        if(this.nCoins >= 1350){
+            this.newAttempt.play();
+            if(this.attempts == 1){
+                this.attempts = 2;
+            } else if(this.attempts == 2){
+                this.attempts = 3;
+            } else if(this.attempts == 3){
+                this.attempts = 4;
+            } else if(this.attempts == 4){
+                this.attempts = 5;
+            } else if(this.attempts == 5){
+                this.attempts = 6;
+            } else {
+                this.attempts = 7;
+            }
+            this.attemptsText.setText(this.attempts);
+        }
     }
 
     create(){
         this.newScore = 0;
+        this.count = 650;
+        this.timerAceleration = 5;
         this.keyScene = "Level4";
         this.anims.create({
             key: "ride",
@@ -157,7 +174,7 @@ export default class Level4 extends Phaser.Scene{
             (obj) => obj.name === "player"
           );
           this.player = this.physics.add.sprite(this.spawnPointPlayer.x, this.spawnPointPlayer.y, "player");
-          this.player.setCollideWorldBounds(true).setCircle(40,0,47);
+          this.player.setCollideWorldBounds(true).setCircle(30,10,57);
         
         spawnPoint = this.map.findObject(
             "objects",
@@ -655,23 +672,6 @@ export default class Level4 extends Phaser.Scene{
             this
         );
 
-
-        this.physics.add.overlap(
-            this.player,
-            this.drinks,
-            this.playerAceleration,
-            null,
-            this
-        );
-
-        this.physics.add.overlap(
-            this.player,
-            this.clocks,
-            this.timeIncrement,
-            null,
-            this
-        );
-
         this.physics.add.overlap(
             this.player,
             this.check,
@@ -762,6 +762,7 @@ export default class Level4 extends Phaser.Scene{
         this.looseAtemptS = this.sound.add("looseAttemptS");
         this.music = this.sound.add("music");
         this.music.play();
+        this.music.setLoop(true);
         this.music.setVolume(0.5);
         
     }
@@ -773,8 +774,11 @@ export default class Level4 extends Phaser.Scene{
         this.person4.anims.play("walk4", true);
         this.person5.anims.play("walk5", true);
         this.check.anims.play("spinCheck", true);
+
         if(this.timer===0){
         this.loseAttemp();
+        this.timer = 60;
+        this.timerText.setText();
         }
         if(this.keyEsc.isDown){   
             
@@ -812,12 +816,45 @@ export default class Level4 extends Phaser.Scene{
         } 
 
         if(this.attempts <= 0){
-            this.scene.start("GameOver");
+            this.scene.pause("Level4");
+            this.scene.launch("GameOver");
         }
 
-        if(this.nCoins === 1350){
-            this.attempts++;
+        if(this.nCoins === 1300){
+            this.nCoins = 0;
+            if(this.attempts == 1){
+                this.attempts = 2;
+            } else if(this.attempts == 2){
+                this.attempts = 3;
+            } else if(this.attempts == 3){
+                this.attempts = 4;
+            } else if(this.attempts == 4){
+                this.attempts = 5;
+            } else if(this.attempts == 5){
+                this.attempts = 6;
+            } else {
+                this.attempts = 7;
+            }
+            this.newAttempt.play();
+            this.attemptsText.setText("");
+            this.attemptsText.setText(this.attempts);
         }
+
+        this.physics.add.overlap(
+            this.player,
+            this.drinks,
+            this.playerAceleration,
+            null,
+            this
+        );
+
+        this.physics.add.overlap(
+            this.player,
+            this.clocks,
+            this.timeIncrement,
+            null,
+            this
+        );
 
     }
 
@@ -843,12 +880,8 @@ export default class Level4 extends Phaser.Scene{
     }
 
     isWin(){
-        this.scene.pause("Level4")
-        this.scene.launch("LevelWin",{
-            nCoins : this.nCoins,
-            timer : this.timer,
-            newScore : this.newScore,
-        });
+        this.scene.pause("Level4");
+        this.scene.launch("GameWin");
     }
 
     resetVelocity(){
@@ -869,7 +902,7 @@ export default class Level4 extends Phaser.Scene{
 
     timeIncrement(player, clock){
         this.clockS.play();
-        this.timer+=5;
+        this.timer+=10;
         clock.disableBody(true,true);
     }
 

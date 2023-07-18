@@ -15,12 +15,12 @@ export default class Level1 extends Phaser.Scene{
     keyScene;
     newScore;
     init(){
-        this.count = 650;
-        this.timerAceleration = 5;
     }
 
     create(){      
         this.keyScene = "Level1";
+        this.count = 650;
+        this.timerAceleration = 5;
         this.newScore = 0;
         console.log(window.innerWidth);
         console.log(window.innerHeight);
@@ -125,7 +125,7 @@ export default class Level1 extends Phaser.Scene{
             (obj) => obj.name === "player"
           );
           this.player = this.physics.add.sprite(this.spawnPointPlayer.x, this.spawnPointPlayer.y, "player");
-          this.player.setCollideWorldBounds(true).setCircle(40,0,47);;
+          this.player.setCollideWorldBounds(true).setCircle(30,10,57);
         
         spawnPoint = this.map.findObject(
             "objects",
@@ -289,7 +289,7 @@ export default class Level1 extends Phaser.Scene{
             this.groundLayer
         );
 
-        this.physics.add.collider(
+        this.physics.add.overlap(
             this.player,
             this.coins,
             this.collectCoin,
@@ -305,7 +305,7 @@ export default class Level1 extends Phaser.Scene{
             this
         );
 
-        this.physics.add.collider(
+        this.physics.add.overlap(
             this.player,
             this.person2,
             this.loseAttemp,
@@ -313,7 +313,7 @@ export default class Level1 extends Phaser.Scene{
             this
         );
 
-        this.physics.add.collider(
+        this.physics.add.overlap(
             this.player,
             this.person3,
             this.loseAttemp,
@@ -321,7 +321,7 @@ export default class Level1 extends Phaser.Scene{
             this
         );
 
-        this.physics.add.collider(
+        this.physics.add.overlap(
             this.player,
             this.car,
             this.loseAttemp,
@@ -329,7 +329,7 @@ export default class Level1 extends Phaser.Scene{
             this
         );
 
-        this.physics.add.collider(
+        this.physics.add.overlap(
             this.player,
             this.car2,
             this.loseAttemp,
@@ -337,7 +337,7 @@ export default class Level1 extends Phaser.Scene{
             this
         );
 
-        this.physics.add.collider(
+        this.physics.add.overlap(
             this.player,
             this.car3,
             this.loseAttemp,
@@ -345,7 +345,7 @@ export default class Level1 extends Phaser.Scene{
             this
         );
 
-        this.physics.add.collider(
+        this.physics.add.overlap(
             this.player,
             this.car4,
             this.loseAttemp,
@@ -353,21 +353,7 @@ export default class Level1 extends Phaser.Scene{
             this
         );
 
-        this.physics.add.collider(
-            this.player,
-            this.drinks,
-            this.playerAceleration,
-            null,
-            this
-        );
-
-        this.physics.add.collider(
-            this.player,
-            this.clocks,
-            this.timeIncrement,
-            null,
-            this
-        );
+        
 
         this.physics.add.overlap(
             this.player,
@@ -410,7 +396,6 @@ export default class Level1 extends Phaser.Scene{
                 keySceneBack : this.keyScene
             });
             this.scene.pause("Level1");
-            this.sound.stopAll();
         });
         pauseButton.setScrollFactor(0);
         this.add.image(110,980,"keyEsc").setScrollFactor(0).setScale(0.8);
@@ -492,6 +477,7 @@ export default class Level1 extends Phaser.Scene{
         this.looseAtemptS = this.sound.add("looseAttemptS");
         this.music = this.sound.add("music");
         this.music.play();
+        this.music.setLoop(true);
         this.music.setVolume(0.5);
         
     }
@@ -503,7 +489,9 @@ export default class Level1 extends Phaser.Scene{
         this.check.anims.play("spinCheck", true);
 
         if(this.timer===0){
-        this.loseAttemp();
+            this.loseAttemp();
+            this.timer = 60;
+            this.timerText.setText();
         }
 
         if(this.keyEsc.isDown){     
@@ -541,7 +529,8 @@ export default class Level1 extends Phaser.Scene{
         } 
 
         if(this.attempts <= 0){
-            this.scene.start("GameOver");
+            this.scene.pause("Level1");
+            this.scene.launch("GameOver");
         }
 
         //TUTORIAL
@@ -557,6 +546,22 @@ export default class Level1 extends Phaser.Scene{
         }else if(this.keyLeft.visible && this.cursors.left.isDown){
             this.keyLeft.destroy();
         }
+
+        this.physics.add.overlap(
+            this.player,
+            this.drinks,
+            this.playerAceleration,
+            null,
+            this
+        );
+
+        this.physics.add.overlap(
+            this.player,
+            this.clocks,
+            this.timeIncrement,
+            null,
+            this
+        );
 
     }
 

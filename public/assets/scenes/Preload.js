@@ -102,6 +102,7 @@ export default class Preload extends Phaser.Scene{
         this.load.image("phoneWin", "./public/assets/images/phoneWin.png");
         this.load.image("star", "./public/assets/images/star.png");
         this.load.image("like", "./public/assets/images/like.png");
+        this.load.image("phoneGameWin", "./public/assets/images/phoneGameWin.png");
 
         //GAME OVER
         this.load.image("phoneOver", "./public/assets/images/phoneOver.png");
@@ -149,9 +150,5 @@ export default class Preload extends Phaser.Scene{
     }
     create(){
         this.scene.start("Menu");
-        /*this.music = this.sound.add("music");
-        this.music.play();
-        this.music.setLoop(true);*/
-
     }
 }

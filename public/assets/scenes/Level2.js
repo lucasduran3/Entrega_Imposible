@@ -15,13 +15,30 @@ export default class Level2 extends Phaser.Scene{
     keyScene;
     newScore;
     init(data){
-        this.count = 650;
-        this.timerAceleration = 5;
         this.nCoins = data.nCoins;
+        if(this.nCoins >= 1350){
+            this.newAttempt.play();
+            if(this.attempts == 1){
+                this.attempts = 2;
+            } else if(this.attempts == 2){
+                this.attempts = 3;
+            } else if(this.attempts == 3){
+                this.attempts = 4;
+            } else if(this.attempts == 4){
+                this.attempts = 5;
+            } else if(this.attempts == 5){
+                this.attempts = 6;
+            } else {
+                this.attempts = 7;
+            }
+            this.attemptsText.setText(this.attempts);
+        }
     }
     create(){
         this.newScore = 0;
         this.keyScene = "Level2";
+        this.count = 650;
+        this.timerAceleration = 5;
         this.anims.create({
             key: "ride",
             frames: this.anims.generateFrameNumbers("player", { start: 1, end: 2 }),
@@ -151,7 +168,7 @@ export default class Level2 extends Phaser.Scene{
             (obj) => obj.name === "player"
           );
           this.player = this.physics.add.sprite(this.spawnPointPlayer.x, this.spawnPointPlayer.y, "player");
-          this.player.setCollideWorldBounds(true).setCircle(40,0,47);
+          this.player.setCollideWorldBounds(true).setCircle(30,10,57);;
         
         spawnPoint = this.map.findObject(
             "objects",
@@ -525,22 +542,6 @@ export default class Level2 extends Phaser.Scene{
 
         this.physics.add.overlap(
             this.player,
-            this.drinks,
-            this.playerAceleration,
-            null,
-            this
-        );
-
-        this.physics.add.overlap(
-            this.player,
-            this.clocks,
-            this.timeIncrement,
-            null,
-            this
-        );
-
-        this.physics.add.overlap(
-            this.player,
             this.check,
             this.isWin,
             null, 
@@ -577,7 +578,6 @@ export default class Level2 extends Phaser.Scene{
 
         pauseButton.on('pointerover', function () {
             this.setScale(1);
-            //this.setTint(0xD0BF0f);
         });
 
         pauseButton.on('pointerout', function () {
@@ -636,8 +636,9 @@ export default class Level2 extends Phaser.Scene{
         this.clockS = this.sound.add("clockS");
         this.newAttempt = this.sound.add("newAttempt");
         this.looseAtemptS = this.sound.add("looseAttemptS");
-        this.music = this.sound.add("music");
+        this.music = this.sound.add("music");        
         this.music.play();
+        this.music.setLoop(true);
         this.music.setVolume(0.5);
     }
 
@@ -668,6 +669,8 @@ export default class Level2 extends Phaser.Scene{
         }
         if(this.timer===0){
         this.loseAttemp();
+        this.timer = 60;
+        this.timerText.setText();
         }
 
         if(this.keyEsc.isDown){    
@@ -705,13 +708,43 @@ export default class Level2 extends Phaser.Scene{
         } 
 
         if(this.attempts <= 0){
-            this.scene.start("GameOver");
+            this.scene.pause("Level2")
+            this.scene.launch("GameOver");
         }
 
         if(this.nCoins === 1350){
-            this.attempts++;
+            this.newAttempt.play();
+            if(this.attempts == 1){
+                this.attempts = 2;
+            } else if(this.attempts == 2){
+                this.attempts = 3;
+            } else if(this.attempts == 3){
+                this.attempts = 4;
+            } else if(this.attempts == 4){
+                this.attempts = 5;
+            } else if(this.attempts == 5){
+                this.attempts = 6;
+            } else {
+                this.attempts = 7;
+            }
             this.attemptsText.setText(this.attempts);
         }
+
+        this.physics.add.overlap(
+            this.player,
+            this.drinks,
+            this.playerAceleration,
+            null,
+            this
+        );
+
+        this.physics.add.overlap(
+            this.player,
+            this.clocks,
+            this.timeIncrement,
+            null,
+            this
+        );
 
     }
 
@@ -765,7 +798,7 @@ export default class Level2 extends Phaser.Scene{
 
     timeIncrement(player, clock){
         this.clockS.play();
-        this.timer+=5;
+        this.timer+=10;
         clock.disableBody(true,true);
     }
 

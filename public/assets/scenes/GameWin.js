@@ -1,17 +1,15 @@
-export default class GameOver extends Phaser.Scene{
+export default class GameWin extends Phaser.Scene{
     constructor(){
-        super("GameOver");
+        super("GameWin");
     }
     sceneBack;
     init(data){
         this.sceneBack = data.keySceneBack;
     }
     create(){
-    this.add.image(960,540,"bgBlack").setScrollFactor(0);
-    this.gameOverS = this.sound.add("gameOverS");
-    this.gameOverS.play();
-    this.add.image(1920/2,1080/2,"phoneOver").setScrollFactor(0);   
-    this.add.image(950,550, "dislike");
+    this.add.image(960,540,"bgBlack").setScrollFactor(0);;
+    this.add.image(1920/2,1080/2,"phoneGameWin").setScrollFactor(0);   
+    this.add.image(950,550, "like");
 
     const homeButton = this.add.image(850,840, "homeButton").setInteractive().setScale(0.7);
     homeButton.on("pointerover", ()=>{
@@ -32,11 +30,8 @@ export default class GameOver extends Phaser.Scene{
 
     homeButton.on("pointerdown", ()=>{
         this.game.canvas.style.cursor = "default";
+        this.scene.stop("Level4");
         this.scene.start("Menu");  
-        this.scene.stop("Level1");  
-        this.scene.stop("Level2");  
-        this.scene.stop("Level3");  
-        this.scene.stop("Level4");  
     });
 
 
@@ -59,11 +54,12 @@ export default class GameOver extends Phaser.Scene{
 
     retryButton.on("pointerdown", ()=>{
         this.game.canvas.style.cursor = "default";
+        this.scene.stop("Level4");
         this.scene.start("Level1");
     });
 
     this.sound.stopAll();
-        this.gameOverS = this.sound.add("gameOverS");
-        this.gameOverS.play();
+    this.gameWinS = this.sound.add("levelWinS");
+    this.gameWinS.play()
     }
 }
