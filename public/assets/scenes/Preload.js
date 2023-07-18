@@ -111,7 +111,7 @@ export default class Preload extends Phaser.Scene{
         this.load.image("dislike", "./public/assets/images/dislike.png")
 
         //AUDIO
-        this.load.audio("music", "./public/assets/audio/music.wav");
+        this.load.audio("music", "./public/assets/audio/music4.wav");
         this.load.audio("clockS", "./public/assets/audio/clockS.mp3");
         this.load.audio("collectcoin", "./public/assets/audio/collectcoin.mp3");
         this.load.audio("collectcoin2", "./public/assets/audio/collectcoin2.mp3");

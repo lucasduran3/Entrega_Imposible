@@ -17,7 +17,6 @@ export default class Level3 extends Phaser.Scene{
     init(data){
         this.nCoins = data.nCoins;
         if(this.nCoins >= 1350){
-            this.newAttempt.play();
             if(this.attempts == 1){
                 this.attempts = 2;
             } else if(this.attempts == 2){
@@ -338,7 +337,7 @@ export default class Level3 extends Phaser.Scene{
             switch (name) {
             case "coin": {
                 c++;
-          const coin = this.coins.create(x, y, "coin").setScale(0.3).anims.play("spin", true);
+          const coin = this.coins.create(x, y, "coin").setScale(0.3).anims.play("spin", true).setCircle(100,-20,-10);;
           break;
         }
       }
@@ -593,6 +592,9 @@ export default class Level3 extends Phaser.Scene{
         this.music.setLoop(true);
         this.music.play();
         this.music.setVolume(0.5);
+        this.collectcoin.setVolume(0.2);
+        this.drinkS.setVolume(0.2);
+        this.clockS.setVolume(0.2);
         
     }
 

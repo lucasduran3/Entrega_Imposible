@@ -60,6 +60,9 @@ export default class GameOver extends Phaser.Scene{
     retryButton.on("pointerdown", ()=>{
         this.game.canvas.style.cursor = "default";
         this.scene.start("Level1");
+        this.scene.stop("Level2");  
+        this.scene.stop("Level3");  
+        this.scene.stop("Level4");  
     });
 
     this.sound.stopAll();

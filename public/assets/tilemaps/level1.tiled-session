@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level3.json",
+    "activeFile": "level4.json",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "Todos los archivos (*)",
@@ -216,8 +216,8 @@
             "scale": 0.25,
             "selectedLayer": 20,
             "viewCenter": {
-                "x": 1660,
-                "y": 6682
+                "x": 1744,
+                "y": 5620
             }
         },
         "level4.json#build": {
@@ -327,9 +327,9 @@
     "project": "",
     "property.type": "bool",
     "recentFiles": [
-        "level4.json",
         "level2.json",
         "level3.json",
+        "level4.json",
         "level1.json",
         "menu.json"
     ],

@@ -361,7 +361,7 @@ export default class Level2 extends Phaser.Scene{
             switch (name) {
             case "coin": {
 
-          const coin = this.coins.create(x, y, "coin").setScale(0.3).anims.play("spin", true);
+          const coin = this.coins.create(x, y, "coin").setScale(0.3).anims.play("spin", true).setCircle(100,-20,-10);;
           c++;
           break;
         }
@@ -640,6 +640,9 @@ export default class Level2 extends Phaser.Scene{
         this.music.play();
         this.music.setLoop(true);
         this.music.setVolume(0.5);
+        this.collectcoin.setVolume(0.2);
+        this.drinkS.setVolume(0.2);
+        this.clockS.setVolume(0.2);
     }
 
     update(){
