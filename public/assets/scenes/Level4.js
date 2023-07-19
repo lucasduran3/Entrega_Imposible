@@ -16,24 +16,32 @@ export default class Level4 extends Phaser.Scene{
     newScore;
     init(data){
         this.nCoins = data.nCoins;
-        if(this.nCoins >= 1350){
-            if(this.attempts == 1){
-                this.attempts = 2;
-            } else if(this.attempts == 2){
-                this.attempts = 3;
-            } else if(this.attempts == 3){
-                this.attempts = 4;
-            } else if(this.attempts == 4){
-                this.attempts = 5;
-            } else if(this.attempts == 5){
-                this.attempts = 6;
-            } else {
-                this.attempts = 7;
-            }
-        }
     }
 
     create(){
+       /* if(this.nCoins >= 1350){
+            this.nCoins = 0;
+            this.scoreText.setText(this.nCoins);
+            if(this.attempts == 1){
+                this.attempts = 2;
+                this.attemptsText.setText(this.attempts);
+            } else if(this.attempts == 2){
+                this.attempts = 3;
+                this.attemptsText.setText(this.attempts);
+            } else if(this.attempts == 3){
+                this.attempts = 4;
+                this.attemptsText.setText(this.attempts);
+            } else if(this.attempts == 4){
+                this.attempts = 5;
+                this.attemptsText.setText(this.attempts);
+            } else if(this.attempts == 5){
+                this.attempts = 6;
+                this.attemptsText.setText(this.attempts);
+            } else {
+                this.attempts = 7;
+                this.attemptsText.setText(this.attempts);
+            }
+        }*/
         this.newScore = 0;
         this.count = 650;
         this.timerAceleration = 5;
@@ -821,7 +829,7 @@ export default class Level4 extends Phaser.Scene{
             this.scene.launch("GameOver");
         }
 
-        if(this.nCoins === 1300){
+        if(this.nCoins >= 1350){
             this.nCoins = 0;
             if(this.attempts == 1){
                 this.attempts = 2;
@@ -836,6 +844,7 @@ export default class Level4 extends Phaser.Scene{
             } else {
                 this.attempts = 7;
             }
+            this.scoreText.setText(this.nCoins);
             this.newAttempt.play();
             this.attemptsText.setText("");
             this.attemptsText.setText(this.attempts);

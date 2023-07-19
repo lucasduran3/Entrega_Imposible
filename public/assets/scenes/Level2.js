@@ -16,7 +16,9 @@ export default class Level2 extends Phaser.Scene{
     newScore;
     init(data){
         this.nCoins = data.nCoins;
-        if(this.nCoins >= 1350){
+    }
+    create(){
+       /* if(this.nCoins >= 1350){
             this.newAttempt.play();
             if(this.attempts == 1){
                 this.attempts = 2;
@@ -32,9 +34,7 @@ export default class Level2 extends Phaser.Scene{
                 this.attempts = 7;
             }
             this.attemptsText.setText(this.attempts);
-        }
-    }
-    create(){
+        }*/
         this.newScore = 0;
         this.keyScene = "Level2";
         this.count = 650;
@@ -715,8 +715,8 @@ export default class Level2 extends Phaser.Scene{
             this.scene.launch("GameOver");
         }
 
-        if(this.nCoins === 1350){
-            this.newAttempt.play();
+        if(this.nCoins >= 1350){
+            this.nCoins = 0;
             if(this.attempts == 1){
                 this.attempts = 2;
             } else if(this.attempts == 2){
@@ -730,6 +730,9 @@ export default class Level2 extends Phaser.Scene{
             } else {
                 this.attempts = 7;
             }
+            this.scoreText.setText(this.nCoins);
+            this.newAttempt.play();
+            this.attemptsText.setText("");
             this.attemptsText.setText(this.attempts);
         }
 
