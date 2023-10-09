@@ -5,6 +5,6 @@ El jugador es un ciclista repartidor de correos cuyo objetivo es llegar a un pun
 En el transcurso deberá superar obstáculos como autos, personas, perros y baches. 
 También podrá recolectar monedas y power ups que le proporcionaran distintas habilidades.
 
-**Link del juego:** https://lucasduran3.github.io/TpFinal/
+**Link del juego:** https://lucasduran3.github.io/Entrega_Imposible/
 
 **Link del TDD:** https://drive.google.com/file/d/1IT69HwnuhC1OWRAuGNCm7Z9QhUb_OlBA/view?usp=sharing
